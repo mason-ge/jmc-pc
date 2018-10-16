@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewConfig>
+  <Arguments/>
+  <Context/>
+  <Model>
+    <DataType name="dtCondition">
+      <PropertyDef name="supCode">
+        <Property name="label">供应商编码</Property>
+      </PropertyDef>
+      <PropertyDef name="supName">
+        <Property name="label">供应商名称</Property>
+      </PropertyDef>
+      <PropertyDef name="propertyDef1"/>
+    </DataType>
+    <DataType name="dtMain" parent="dtSupplierBaseInfo"/>
+  </Model>
+  <View>
+    <DataSet id="dsCondition">
+      <Property name="dataType">dtCondition</Property>
+    </DataSet>
+    <DataSet id="dsMain">
+      <Property name="dataType">[dtMain]</Property>
+      <Property name="dataProvider">supBaseController#getSupBaseListPage</Property>
+      <Property name="loadMode">manual</Property>
+      <Property name="pageSize">50</Property>
+    </DataSet>
+    <FieldSet>
+      <Property name="caption">查询条件</Property>
+      <Buttons/>
+      <Children>
+        <AutoForm>
+          <Property name="dataSet">dsCondition</Property>
+          <Property name="cols">*,*,*,*</Property>
+          <Property name="labelWidth">100</Property>
+          <AutoFormElement>
+            <Property name="name">supCode</Property>
+            <Property name="property">supCode</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">supName</Property>
+            <Property name="property">supName</Property>
+            <Editor/>
+          </AutoFormElement>
+        </AutoForm>
+      </Children>
+    </FieldSet>
+    <ToolBar>
+      <DataPilot>
+        <Property name="itemCodes">pages,pageSize</Property>
+        <Property name="dataSet">dsMain</Property>
+      </DataPilot>
+      <ToolBarButton id="btnQuery">
+        <Property name="caption">查询</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -40px -100px</Property>
+        <Property name="width">70</Property>
+      </ToolBarButton>
+      <ToolBarButton id="btnReset">
+        <Property name="caption">重置</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -20px -200px</Property>
+        <Property name="width">70</Property>
+      </ToolBarButton>
+      <ToolBarButton id="btnCreate">
+        <Property name="caption">创建</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -120px -0px</Property>
+        <Property name="width">70</Property>
+      </ToolBarButton>
+      <ToolBarButton id="btnMod">
+        <Property name="caption">修改</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -200px -0px</Property>
+        <Property name="width">70</Property>
+      </ToolBarButton>
+      <ToolBarButton id="btnWatch">
+        <Property name="caption">查看</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -220px -80px</Property>
+        <Property name="width">70</Property>
+      </ToolBarButton>
+      <ToolBarButton id="btnExport">
+        <Property name="caption">导出</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -20px -240px</Property>
+        <Property name="action">export2ReportAction1</Property>
+      </ToolBarButton>
+    </ToolBar>
+    <DataGrid id="dgMain">
+      <Property name="dataSet">dsMain</Property>
+      <Property name="readOnly">true</Property>
+      <Property name="stretchColumnsMode">off</Property>
+      <RowNumColumn/>
+      <DataColumn name="supCode">
+        <Property name="property">supCode</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="supName">
+        <Property name="property">supName</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="shortName">
+        <Property name="property">shortName</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="taxCode">
+        <Property name="property">taxCode</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="adr1">
+        <Property name="property">adr1</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="conName1">
+        <Property name="property">conName1</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="conPhone1">
+        <Property name="property">conPhone1</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="conMobile1">
+        <Property name="property">conMobile1</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="conEmail1">
+        <Property name="property">conEmail1</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="tel">
+        <Property name="property">tel</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="fax">
+        <Property name="property">fax</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="email">
+        <Property name="property">email</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="qq">
+        <Property name="property">qq</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="wechat">
+        <Property name="property">wechat</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="supLvl">
+        <Property name="property">supLvl</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn>
+        <Property name="property">payment</Property>
+        <Property name="name">payment</Property>
+        <Property name="align">center</Property>
+        <Editor/>
+      </DataColumn>
+      <DataColumn name="createdBy">
+        <Property name="property">createdBy</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="createdD">
+        <Property name="property">createdD</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+    </DataGrid>
+    <Export2ReportAction id="export2ReportAction1">
+      <Property name="template">dgMain</Property>
+      <Property name="dataScope">serverAll</Property>
+      <Property name="titleName">供应商主数据</Property>
+      <Property name="showTitle">true</Property>
+    </Export2ReportAction>
+  </View>
+</ViewConfig>

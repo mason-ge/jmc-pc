@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewConfig>
+  <Arguments/>
+  <Context/>
+  <Model/>
+  <View>
+    <GroupStart id="_cltInfoChoose"/>
+    <Dialog id="_dlgClient">
+      <Property name="caption">客户主数据</Property>
+      <Property name="height">70%</Property>
+      <Property name="width">60%</Property>
+      <Buttons/>
+      <Children>
+        <IFrame id="_IframeClient"/>
+      </Children>
+      <Tools/>
+    </Dialog>
+    <GroupEnd/>
+  </View>
+</ViewConfig>

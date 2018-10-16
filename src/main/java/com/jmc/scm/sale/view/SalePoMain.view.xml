@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewConfig>
+  <Arguments/>
+  <Context/>
+  <Model>
+    <DataType name="dtCondition">
+      <PropertyDef name="salePoCode">
+        <Property name="label">单号</Property>
+      </PropertyDef>
+      <PropertyDef name="cltCode">
+        <Property></Property>
+        <Property name="label">客户编码</Property>
+      </PropertyDef>
+      <PropertyDef name="cltName">
+        <Property></Property>
+        <Property name="label">客户名称</Property>
+      </PropertyDef>
+      <PropertyDef name="createdD_F">
+        <Property name="label">订单日期(起)</Property>
+        <Property name="dataType">Date</Property>
+      </PropertyDef>
+      <PropertyDef name="createdD_T">
+        <Property name="label">订单日期(止)</Property>
+        <Property name="dataType">Date</Property>
+      </PropertyDef>
+      <PropertyDef name="soStatus">
+        <Property></Property>
+        <Property name="label">状态</Property>
+        <Property name="mapping">
+          <Property name="keyProperty">enumvCode</Property>
+          <Property name="mapValues">${dorado.getDataProvider(&quot;enumPR#getEnumvByEnumCode&quot;).getResult(&quot;SO_STATUS&quot;)}</Property>
+          <Property name="valueProperty">enumvName</Property>
+        </Property>
+      </PropertyDef>
+    </DataType>
+    <DataType name="dtMain" parent="dtSalePoMain">
+      <PropertyDef name="totNum">
+        <Property name="label">订单数量</Property>
+        <Property name="dataType">BigDecimal</Property>
+      </PropertyDef>
+      <PropertyDef name="deliNum">
+        <Property name="label">已交货数量</Property>
+        <Property name="dataType">BigDecimal</Property>
+      </PropertyDef>
+      <PropertyDef name="oweNum">
+        <Property name="label">欠货数量</Property>
+        <Property name="dataType">BigDecimal</Property>
+      </PropertyDef>
+      <PropertyDef name="soStatus">
+        <Property></Property>
+        <Property name="label">状态</Property>
+        <Property name="mapping">
+          <Property name="keyProperty">enumvCode</Property>
+          <Property name="mapValues">${dorado.getDataProvider(&quot;enumPR#getEnumvByEnumCode&quot;).getResult(&quot;SO_STATUS&quot;)}</Property>
+          <Property name="valueProperty">enumvName</Property>
+        </Property>
+      </PropertyDef>
+    </DataType>
+  </Model>
+  <View>
+    <DataSet id="dsCondition">
+      <Property name="dataType">dtCondition</Property>
+    </DataSet>
+    <DataSet id="dsMain">
+      <Property name="dataType">[dtMain]</Property>
+      <Property name="dataProvider">salePoController#getBaseListPage</Property>
+      <Property name="loadMode">manual</Property>
+      <Property name="pageSize">50</Property>
+    </DataSet>
+    <FieldSet>
+      <Property name="caption">查询条件</Property>
+      <Buttons/>
+      <Children>
+        <AutoForm>
+          <Property name="dataSet">dsCondition</Property>
+          <Property name="cols">*,*,*,*</Property>
+          <Property name="labelWidth">100</Property>
+          <AutoFormElement>
+            <Property name="name">salePoCode</Property>
+            <Property name="property">salePoCode</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">cltCode</Property>
+            <Property name="property">cltCode</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">cltName</Property>
+            <Property name="property">cltName</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">createdD_F</Property>
+            <Property name="property">createdD_F</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">createdD_T</Property>
+            <Property name="property">createdD_T</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">soStatus</Property>
+            <Property name="property">soStatus</Property>
+            <Editor/>
+          </AutoFormElement>
+        </AutoForm>
+      </Children>
+    </FieldSet>
+    <ToolBar>
+      <DataPilot>
+        <Property name="itemCodes">pages,pageSize</Property>
+        <Property name="dataSet">dsMain</Property>
+      </DataPilot>
+      <ToolBarButton id="btnQuery">
+        <Property name="caption">查询</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -40px -100px</Property>
+        <Property name="width">70</Property>
+      </ToolBarButton>
+      <ToolBarButton id="btnReset">
+        <Property name="caption">重置</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -20px -200px</Property>
+        <Property name="width">70</Property>
+      </ToolBarButton>
+      <ToolBarButton id="btnMod">
+        <Property name="caption">修改</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -200px -0px</Property>
+        <Property name="width">70</Property>
+      </ToolBarButton>
+      <ToolBarButton id="btnDeli">
+        <Property name="caption">发货</Property>
+        <Property name="icon"> url(>skin>common/icons.gif) -60px -40px</Property>
+        <Property name="width">70</Property>
+      </ToolBarButton>
+      <ToolBarButton id="btnWatch">
+        <Property name="caption">查看</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -220px -80px</Property>
+        <Property name="width">70</Property>
+      </ToolBarButton>
+    </ToolBar>
+    <DataGrid id="dgMain">
+      <Property name="dataSet">dsMain</Property>
+      <Property name="readOnly">true</Property>
+      <RowNumColumn>
+        <Property name="width">40</Property>
+      </RowNumColumn>
+      <DataColumn name="salePoCode">
+        <Property name="property">salePoCode</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn>
+        <Property name="property">soStatus</Property>
+        <Property name="name">soStatus</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="cltCode">
+        <Property name="property">cltCode</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="cltName">
+        <Property name="property">cltName</Property>
+        <Property name="align">left</Property>
+      </DataColumn>
+      <DataColumn name="createdD">
+        <Property name="property">createdD</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="totNum">
+        <Property name="property">totNum</Property>
+        <Property name="align">right</Property>
+      </DataColumn>
+      <DataColumn name="deliNum">
+        <Property name="property">deliNum</Property>
+        <Property name="align">right</Property>
+      </DataColumn>
+      <DataColumn name="oweNum">
+        <Property name="property">oweNum</Property>
+        <Property name="align">right</Property>
+      </DataColumn>
+      <DataColumn name="payCon">
+        <Property name="property">payCon</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="remark">
+        <Property name="property">remark</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="cltAdd">
+        <Property name="property">cltAdd</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+    </DataGrid>
+    <AjaxAction id="ajGetStatus">
+      <Property name="async">false</Property>
+      <Property name="service">salePoController#getStatus</Property>
+    </AjaxAction>
+  </View>
+</ViewConfig>

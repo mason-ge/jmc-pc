@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewConfig>
+  <Arguments/>
+  <Context/>
+  <Model>
+    <DataType name="dtCondition">
+      <PropertyDef name="prestoCode">
+        <Property name="label">入库单号</Property>
+      </PropertyDef>
+      <PropertyDef name="status">
+        <Property></Property>
+        <Property name="label">状态</Property>
+        <Property name="mapping">
+          <Property name="keyProperty">enumvCode</Property>
+          <Property name="mapValues">${dorado.getDataProvider(&quot;enumPR#getEnumvByEnumCode&quot;).getResult(&quot;COMMON_STATUS&quot;)}</Property>
+          <Property name="valueProperty">enumvName</Property>
+        </Property>
+      </PropertyDef>
+      <PropertyDef name="supCode">
+        <Property></Property>
+        <Property name="label">供应商编码</Property>
+      </PropertyDef>
+      <PropertyDef name="supName">
+        <Property></Property>
+        <Property name="label">供应商名称</Property>
+      </PropertyDef>
+      <PropertyDef name="refOrderNum">
+        <Property></Property>
+        <Property name="label">参考单号</Property>
+      </PropertyDef>
+      <PropertyDef name="recDateF">
+        <Property name="dataType">Date</Property>
+        <Property name="label">入库日期(起)</Property>
+      </PropertyDef>
+      <PropertyDef name="recDateT">
+        <Property name="dataType">Date</Property>
+        <Property name="label">入库日期(止)</Property>
+      </PropertyDef>
+    </DataType>
+    <DataType name="dtMain" parent="dtStockMoveMain">
+      <PropertyDef name="totNum">
+        <Property name="label">总件数</Property>
+        <Property name="dataType">BigDecimal</Property>
+      </PropertyDef>
+      <PropertyDef name="totSaleAmt">
+        <Property name="label">销售总金额</Property>
+        <Property name="dataType">BigDecimal</Property>
+      </PropertyDef>
+      <PropertyDef name="totPay">
+        <Property name="label">已收款</Property>
+        <Property name="dataType">BigDecimal</Property>
+      </PropertyDef>
+      <PropertyDef name="totLeftPay">
+        <Property name="label">剩余未收款</Property>
+        <Property name="dataType">BigDecimal</Property>
+      </PropertyDef>
+      <PropertyDef name="lastPayDay">
+        <Property name="label">最后收款日期</Property>
+        <Property name="dataType">Date</Property>
+      </PropertyDef>
+    </DataType>
+  </Model>
+  <View>
+    <DataSet id="dsCondition">
+      <Property name="dataType">dtCondition</Property>
+    </DataSet>
+    <DataSet id="dsMain">
+      <Property name="dataType">[dtMain]</Property>
+      <Property name="loadMode">manual</Property>
+      <Property name="pageSize">50</Property>
+      <Property name="dataProvider">goodsInController#getBaseListPage</Property>
+    </DataSet>
+    <FieldSet>
+      <Property name="caption">查询条件</Property>
+      <Buttons/>
+      <Children>
+        <AutoForm>
+          <Property name="dataSet">dsCondition</Property>
+          <Property name="cols">*,*,*,*</Property>
+          <Property name="labelWidth">100</Property>
+          <AutoFormElement>
+            <Property name="name">prestoCode</Property>
+            <Property name="property">prestoCode</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">status</Property>
+            <Property name="property">status</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">supCode</Property>
+            <Property name="property">supCode</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">supName</Property>
+            <Property name="property">supName</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">refOrderNum</Property>
+            <Property name="property">refOrderNum</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">recDateF</Property>
+            <Property name="property">recDateF</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">recDateT</Property>
+            <Property name="property">recDateT</Property>
+            <Editor/>
+          </AutoFormElement>
+        </AutoForm>
+      </Children>
+    </FieldSet>
+    <ToolBar>
+      <DataPilot>
+        <Property name="itemCodes">pages,pageSize</Property>
+        <Property name="dataSet">dsMain</Property>
+      </DataPilot>
+      <ToolBarButton id="btnQuery">
+        <Property name="caption">查询</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -40px -100px</Property>
+        <Property name="width">70</Property>
+      </ToolBarButton>
+      <ToolBarButton id="btnReset">
+        <Property name="caption">重置</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -20px -200px</Property>
+        <Property name="width">70</Property>
+      </ToolBarButton>
+      <ToolBarButton id="btnCreate">
+        <Property name="caption">创建</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -120px -0px</Property>
+        <Property name="width">70</Property>
+      </ToolBarButton>
+      <ToolBarButton id="btnMod">
+        <Property name="caption">修改</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -200px -0px</Property>
+        <Property name="width">70</Property>
+      </ToolBarButton>
+      <ToolBarButton id="btnWatch">
+        <Property name="caption">查看</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -220px -80px</Property>
+        <Property name="width">70</Property>
+      </ToolBarButton>
+      <ToolBarButton id="btnExport">
+        <Property name="caption">导出</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -20px -240px</Property>
+        <Property name="action">export2ReportAction1</Property>
+      </ToolBarButton>
+    </ToolBar>
+    <DataGrid id="dgMain">
+      <Property name="dataSet">dsMain</Property>
+      <Property name="readOnly">true</Property>
+      <Property name="stretchColumnsMode">off</Property>
+      <RowNumColumn>
+        <Property name="width">40</Property>
+      </RowNumColumn>
+      <DataColumn name="prestoCode">
+        <Property name="property">prestoCode</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="status">
+        <Property name="property">status</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="supCode">
+        <Property name="property">supCode</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="supName">
+        <Property name="property">supName</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="refOrderNum">
+        <Property name="property">refOrderNum</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="recDate">
+        <Property name="property">recDate</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="totAmt">
+        <Property name="property">totAmt</Property>
+        <Property name="align">right</Property>
+      </DataColumn>
+      <DataColumn name="totPrice">
+        <Property name="property">totPrice</Property>
+        <Property name="align">right</Property>
+      </DataColumn>
+      <DataColumn name="totPay">
+        <Property name="property">totPay</Property>
+        <Property name="align">right</Property>
+        <Property name="caption">已付款</Property>
+      </DataColumn>
+      <DataColumn name="totLeftPay">
+        <Property name="property">totLeftPay</Property>
+        <Property name="align">right</Property>
+        <Property name="caption">剩余未付款</Property>
+      </DataColumn>
+      <DataColumn name="lastPayDay">
+        <Property name="property">lastPayDay</Property>
+        <Property name="align">center</Property>
+        <Property name="caption">最后付款日期</Property>
+      </DataColumn>
+      <DataColumn name="remark">
+        <Property name="property">remark</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="createdBy">
+        <Property name="property">createdBy</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="createdD">
+        <Property name="property">createdD</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+    </DataGrid>
+    <Export2ReportAction id="export2ReportAction1">
+      <Property name="template">dgMain</Property>
+      <Property name="dataScope">serverAll</Property>
+      <Property name="titleName">供应商主数据</Property>
+      <Property name="showTitle">true</Property>
+    </Export2ReportAction>
+  </View>
+</ViewConfig>

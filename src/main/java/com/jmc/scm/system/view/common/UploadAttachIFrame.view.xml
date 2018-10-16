@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewConfig>
+  <Arguments/>
+  <Context/>
+  <Model/>
+  <View>
+    <GroupStart id="_attUpload"/>
+    <Dialog id="_dialogAttUpload">
+      <Property name="caption">上传附件</Property>
+      <Property name="height">60%</Property>
+      <Property name="width">30%</Property>
+      <Buttons/>
+      <Children>
+        <IFrame id="_IframeAttUpload"/>
+      </Children>
+      <Tools/>
+    </Dialog>
+    <GroupEnd/>
+  </View>
+</ViewConfig>

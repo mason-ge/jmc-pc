@@ -1,0 +1,81 @@
+#-------------------------------------------
+#         QAS CONFIG
+#-------------------------------------------
+core.runMode=debug
+core.defaultLanguage = zh
+core.defaultCountry = CN
+
+model.root=classpath*:com/jmc/scm/model
+view.root=classpath:
+
+view.javaScript.charset=UTF-8
+view.styleSheet.charset=UTF-8
+#-----------------------------------------
+#				QAS DB CONFIG 
+#-----------------------------------------
+jdbc.url=jdbc:mysql://localhost/jmc?autoReconnect=true&useUnicode=true&characterEncoding=utf-8&allowMultiQueries=true
+jdbc.userName=jmc
+jdbc.password=jmc@2018
+jdbc.driver=com.mysql.jdbc.Driver
+
+#-------------------------------------------
+#         QAS FTP CONFIG
+#-------------------------------------------
+jmc.scm.ftp.address=localhost
+
+jmc.scm.ftp.fileOpen.httpPath=http://yun.jmcsolution.cn:8080/JmcScm/rest/open/
+jmc.scm.ftp.defaultTimeout=30000
+jmc.scm.ftp.dataTimeout=30000
+jmc.scm.ftp.connectTimeout=10000
+
+#-----------------------------------------
+#				hibernate CONFIG 
+#-----------------------------------------
+
+hibernate.dialect=org.hibernate.dialect.MySQL5Dialect
+hibernate.showSql=false
+hibernate.formatSql=true
+hibernate.hbm2ddl.auto=none
+#hibernate.hbm2ddl.auto=update
+
+#-------------------------------------------
+#         BDF2 CONFIG
+#-------------------------------------------
+bdf2.mainFrameBannerHeight = 30px
+bdf2.application.title=JMC\u73E0\u5B9D\u5F00\u5E97\u5B9D
+bdf2.useCaptchaForLogin=false
+bdf2.mainFrameBanner=images/logo-qas.png
+bdf2.mainFrameBackgroundColor=#2A394F
+bdf2.mainFrameTopView= /com.jmc.scm.system.view.FrameTop
+bdf2.login.backgroundImageFolder=images/
+view.skin=josiny-color
+bdf2.mainFrame.welcomePath=com.jmc.scm.system.view.Welcome.d
+bdf2.mainFrame.welcomeTitle=\u6B22\u8FCE\u4F7F\u7528
+bdf2.mainFrame.welcomeIcon=url(>skin>common/icons.gif) -0px -20px
+bdf2.homeBgImg=home-bg.jpg
+bdf2.securityMaximumSessions=-1
+
+#------------------------------------------
+#			c3p0 pool
+#------------------------------------------
+c3p0.acquireIncrement=5
+c3p0.initialPoolSize=2
+c3p0.idleConnectionTestPeriod=60
+c3p0.minPoolSize=2
+c3p0.maxPoolSize=200
+c3p0.maxStatements=0
+c3p0.numHelperThreads=20
+c3p0.maxIdleTime=60
+c3p0.acquireRetryDelay=1000
+c3p0.acquireRetryAttempts=30
+c3p0.breakAfterAcquireFailure=false
+c3p0.testConnectionOnCheckout=false
+c3p0.checkoutTimeout=10000
+c3p0.maxIdleTimeExcessConnections=30
+c3p0.maxConnectionAge=30
+
+#-------------------------------------------
+#         SYS CONFIG
+#-------------------------------------------
+sys.job.swich=true
+sys.companyId=JMC

@@ -1,0 +1,750 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<report xmlns="http://www.eclipse.org/birt/2005/design" version="3.2.23" id="1">
+    <property name="createdBy">Eclipse BIRT Designer Version 4.3.2.v20140211-1400 Build &lt;4.3.2.v20140218-1056></property>
+    <list-property name="propertyBindings">
+        <structure>
+            <property name="name">queryText</property>
+            <property name="id">8</property>
+        </structure>
+        <structure>
+            <property name="name">queryTimeOut</property>
+            <property name="id">8</property>
+        </structure>
+        <structure>
+            <property name="name">rowFetchSize</property>
+            <property name="id">8</property>
+        </structure>
+    </list-property>
+    <property name="units">in</property>
+    <property name="iconFile">/templates/blank_report.gif</property>
+    <property name="bidiLayoutOrientation">ltr</property>
+    <parameters>
+        <scalar-parameter name="client" id="10">
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+        <scalar-parameter name="batchCode" id="11">
+            <property name="valueType">static</property>
+            <property name="isRequired">true</property>
+            <property name="dataType">string</property>
+            <property name="distinct">true</property>
+            <list-property name="selectionList"/>
+            <property name="paramType">simple</property>
+            <property name="concealValue">false</property>
+            <property name="controlType">text-box</property>
+            <structure name="format">
+                <property name="category">Unformatted</property>
+            </structure>
+        </scalar-parameter>
+    </parameters>
+    <data-sources>
+        <oda-data-source extensionID="org.eclipse.birt.report.data.oda.jdbc" name="Data Source" id="7">
+            <list-property name="privateDriverProperties">
+                <ex-property>
+                    <name>metadataBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledMetadataBidiFormatStr</name>
+                </ex-property>
+                <ex-property>
+                    <name>contentBidiFormatStr</name>
+                    <value>ILYNN</value>
+                </ex-property>
+                <ex-property>
+                    <name>disabledContentBidiFormatStr</name>
+                </ex-property>
+            </list-property>
+            <property name="odaDriverClass">com.mysql.jdbc.Driver</property>
+            <property name="odaURL">jdbc:mysql://yun.jmcsolution.cn:3306/jmc?autoReconnect=true&amp;useSSL=false&amp;characterEncoding=utf-8&amp;zeroDateTimeBehavior=convertToNull</property>
+            <property name="odaUser">jmc</property>
+            <encrypted-property name="odaPassword" encryptionID="base64">am1jQDIwMTg=</encrypted-property>
+        </oda-data-source>
+    </data-sources>
+    <data-sets>
+        <oda-data-set extensionID="org.eclipse.birt.report.data.oda.jdbc.JdbcSelectDataSet" name="Data Set" id="8">
+            <property name="nullsOrdering">nulls lowest</property>
+            <list-property name="columnHints">
+                <structure>
+                    <property name="columnName">SP_NAME</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">货品名称</text-property>
+                    <text-property name="heading">货品名称</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">零售价</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">零售价</text-property>
+                    <text-property name="heading">零售价</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">图片路径</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">图片路径</text-property>
+                    <text-property name="heading">图片路径</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">BATCH_CODE</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">货号</text-property>
+                    <text-property name="heading">货号</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">证书号</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">证书号</text-property>
+                    <text-property name="heading">证书号</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">主石证书号</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">主石证书号</text-property>
+                    <text-property name="heading">主石证书号</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">PROD_CODE</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">商品编码</text-property>
+                    <text-property name="heading">商品编码</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">证书重质量</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">证书重质量</text-property>
+                    <text-property name="heading">证书重质量</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">手寸</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">手寸</text-property>
+                    <text-property name="heading">手寸</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">石重</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">石重</text-property>
+                    <text-property name="heading">石重</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">重量</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">重量</text-property>
+                    <text-property name="heading">重量</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">副石</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">副石</text-property>
+                    <text-property name="heading">副石</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">MAIN_ST_CODE</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">主石石号</text-property>
+                    <text-property name="heading">主石石号</text-property>
+                </structure>
+                <structure>
+                    <property name="columnName">颜色净度</property>
+                    <property name="analysis">dimension</property>
+                    <text-property name="displayName">颜色净度</text-property>
+                    <text-property name="heading">颜色净度</text-property>
+                </structure>
+            </list-property>
+            <list-property name="parameters">
+                <structure>
+                    <property name="name">CLIENT</property>
+                    <property name="paramName">client</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">1</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+                <structure>
+                    <property name="name">BATCH_CODE</property>
+                    <property name="paramName">batchCode</property>
+                    <property name="nativeName"></property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">-1</property>
+                    <property name="position">2</property>
+                    <property name="isInput">true</property>
+                    <property name="isOutput">false</property>
+                </structure>
+            </list-property>
+            <structure name="cachedMetaData">
+                <list-property name="resultSet">
+                    <structure>
+                        <property name="position">1</property>
+                        <property name="name">SP_NAME</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">2</property>
+                        <property name="name">零售价</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">3</property>
+                        <property name="name">图片路径</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">4</property>
+                        <property name="name">BATCH_CODE</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">5</property>
+                        <property name="name">证书号</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">6</property>
+                        <property name="name">主石证书号</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">7</property>
+                        <property name="name">PROD_CODE</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">8</property>
+                        <property name="name">证书重质量</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">9</property>
+                        <property name="name">手寸</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">10</property>
+                        <property name="name">石重</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">11</property>
+                        <property name="name">重量</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">12</property>
+                        <property name="name">副石</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">13</property>
+                        <property name="name">MAIN_ST_CODE</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                    <structure>
+                        <property name="position">14</property>
+                        <property name="name">颜色净度</property>
+                        <property name="dataType">string</property>
+                    </structure>
+                </list-property>
+            </structure>
+            <property name="dataSource">Data Source</property>
+            <list-property name="resultSet">
+                <structure>
+                    <property name="position">1</property>
+                    <property name="name">SP_NAME</property>
+                    <property name="nativeName">SP_NAME</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">2</property>
+                    <property name="name">零售价</property>
+                    <property name="nativeName">零售价</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">3</property>
+                    <property name="name">图片路径</property>
+                    <property name="nativeName">图片路径</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">4</property>
+                    <property name="name">BATCH_CODE</property>
+                    <property name="nativeName">BATCH_CODE</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">5</property>
+                    <property name="name">证书号</property>
+                    <property name="nativeName">证书号</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">6</property>
+                    <property name="name">主石证书号</property>
+                    <property name="nativeName">主石证书号</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">7</property>
+                    <property name="name">PROD_CODE</property>
+                    <property name="nativeName">PROD_CODE</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">8</property>
+                    <property name="name">证书重质量</property>
+                    <property name="nativeName">证书重质量</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">9</property>
+                    <property name="name">手寸</property>
+                    <property name="nativeName">手寸</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">10</property>
+                    <property name="name">石重</property>
+                    <property name="nativeName">石重</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">11</property>
+                    <property name="name">重量</property>
+                    <property name="nativeName">重量</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">12</property>
+                    <property name="name">副石</property>
+                    <property name="nativeName">副石</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">13</property>
+                    <property name="name">MAIN_ST_CODE</property>
+                    <property name="nativeName">MAIN_ST_CODE</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+                <structure>
+                    <property name="position">14</property>
+                    <property name="name">颜色净度</property>
+                    <property name="nativeName">颜色净度</property>
+                    <property name="dataType">string</property>
+                    <property name="nativeDataType">12</property>
+                </structure>
+            </list-property>
+            <xml-property name="queryText"><![CDATA[SELECT
+	t.SP_NAME "货品名称",
+	CONCAT('¥:',COALESCE(t.RET_PRICE,'')) "零售价",
+	(
+		SELECT
+			CONCAT(f.FILE_HTTP_PATH, '.svg')
+		FROM
+			sys_file f
+		WHERE
+			t.BATCH_CODE = f.BIZ_CODE
+	) "图片路径",
+t.BATCH_CODE "货号",
+CONCAT("NGTC: ",COALESCE(t.CER_NUM,'')) "证书号",
+CONCAT("GIA: ",COALESCE(t.MAIN_CER_CODE,'')) "主石证书号",
+t.PROD_CODE "商品编码",
+CONCAT("总重: ",COALESCE(t.NGTC_TOT_QUALITY,'')) "证书重质量",
+CONCAT("手寸: ",COALESCE(t.SIZE,'')) "手寸",
+CONCAT("石重: ",COALESCE(t.MAN_ST_WT,'')) "石重",
+CONCAT("重量: ",COALESCE(t.WEIGHT,'')) "重量",
+CONCAT("副石: ",COALESCE(t.ASST_ST_WT,''),"/",COALESCE(t.ASST_ST_AMT,'')) "副石",
+
+t.MAIN_ST_CODE "主石石号",
+CONCAT(COALESCE(t.COLOR,'')," ",COALESCE(t.NEAT,'')) "颜色净度"
+
+FROM
+	prop_uni_info t
+WHERE
+	1 = 1
+AND t.DEL_FLG = '0'
+AND t.CLIENT = ?
+AND t.BATCH_CODE = ?]]></xml-property>
+            <xml-property name="designerValues"><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<model:DesignValues xmlns:design="http://www.eclipse.org/datatools/connectivity/oda/design" xmlns:model="http://www.eclipse.org/birt/report/model/adapter/odaModel">
+  <Version>2.0</Version>
+  <DataSetParameters>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>1</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+    <parameter>
+      <design:ParameterDefinition>
+        <design:inOutMode>In</design:inOutMode>
+        <design:attributes>
+          <design:identifier>
+            <design:name></design:name>
+            <design:position>2</design:position>
+          </design:identifier>
+          <design:nativeDataTypeCode>-1</design:nativeDataTypeCode>
+          <design:precision>0</design:precision>
+          <design:scale>0</design:scale>
+          <design:nullability>Unknown</design:nullability>
+        </design:attributes>
+      </design:ParameterDefinition>
+    </parameter>
+  </DataSetParameters>
+  <design:ResultSets derivedMetaData="true">
+    <design:resultSetDefinitions>
+      <design:resultSetColumns>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>SP_NAME</design:name>
+              <design:position>1</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>80</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>货品名称</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>货品名称</design:label>
+            <design:formattingHints>
+              <design:displaySize>80</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>零售价</design:name>
+              <design:position>2</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>18</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>零售价</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>零售价</design:label>
+            <design:formattingHints>
+              <design:displaySize>18</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>图片路径</design:name>
+              <design:position>3</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>196617</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>Nullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>图片路径</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>图片路径</design:label>
+            <design:formattingHints>
+              <design:displaySize>65539</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+        <design:resultColumnDefinitions>
+          <design:attributes>
+            <design:identifier>
+              <design:name>BATCH_CODE</design:name>
+              <design:position>4</design:position>
+            </design:identifier>
+            <design:nativeDataTypeCode>12</design:nativeDataTypeCode>
+            <design:precision>20</design:precision>
+            <design:scale>0</design:scale>
+            <design:nullability>NotNullable</design:nullability>
+            <design:uiHints>
+              <design:displayName>货号</design:displayName>
+            </design:uiHints>
+          </design:attributes>
+          <design:usageHints>
+            <design:label>货号</design:label>
+            <design:formattingHints>
+              <design:displaySize>20</design:displaySize>
+            </design:formattingHints>
+          </design:usageHints>
+        </design:resultColumnDefinitions>
+      </design:resultSetColumns>
+      <design:criteria/>
+    </design:resultSetDefinitions>
+  </design:ResultSets>
+</model:DesignValues>]]></xml-property>
+        </oda-data-set>
+    </data-sets>
+    <styles>
+        <style name="report" id="4">
+            <property name="fontFamily">sans-serif</property>
+            <property name="fontSize">10pt</property>
+        </style>
+        <style name="crosstab-cell" id="5">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+        <style name="crosstab" id="6">
+            <property name="borderBottomColor">#CCCCCC</property>
+            <property name="borderBottomStyle">solid</property>
+            <property name="borderBottomWidth">1pt</property>
+            <property name="borderLeftColor">#CCCCCC</property>
+            <property name="borderLeftStyle">solid</property>
+            <property name="borderLeftWidth">1pt</property>
+            <property name="borderRightColor">#CCCCCC</property>
+            <property name="borderRightStyle">solid</property>
+            <property name="borderRightWidth">1pt</property>
+            <property name="borderTopColor">#CCCCCC</property>
+            <property name="borderTopStyle">solid</property>
+            <property name="borderTopWidth">1pt</property>
+        </style>
+    </styles>
+    <page-setup>
+        <simple-master-page name="Simple MasterPage" id="2">
+            <property name="type">custom</property>
+            <property name="topMargin">0in</property>
+            <property name="leftMargin">0in</property>
+            <property name="bottomMargin">0in</property>
+            <property name="rightMargin">0in</property>
+            <property name="height">17mm</property>
+            <property name="width">35mm</property>
+            <property name="headerHeight">0in</property>
+            <property name="footerHeight">0in</property>
+        </simple-master-page>
+    </page-setup>
+    <body>
+        <table id="12">
+            <property name="height">15mm</property>
+            <property name="width">1.3541666666666667in</property>
+            <property name="dataSet">Data Set</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">SP_NAME</property>
+                    <text-property name="displayName">货品名称</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["SP_NAME"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">零售价</property>
+                    <text-property name="displayName">零售价</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["零售价"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">BATCH_CODE</property>
+                    <text-property name="displayName">货号</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["BATCH_CODE"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <column id="23">
+                <property name="width">1.3541666666666667in</property>
+            </column>
+            <header>
+                <row id="90">
+                    <cell id="91">
+                        <property name="paddingTop">0pt</property>
+                        <property name="paddingLeft">0pt</property>
+                        <property name="paddingBottom">0pt</property>
+                        <property name="paddingRight">0pt</property>
+                        <data id="92"/>
+                    </cell>
+                </row>
+                <row id="13">
+                    <cell id="14">
+                        <property name="paddingTop">0pt</property>
+                        <property name="paddingLeft">0pt</property>
+                        <property name="paddingBottom">0pt</property>
+                        <property name="paddingRight">0pt</property>
+                        <data id="24">
+                            <property name="fontFamily">"幼圆"</property>
+                            <property name="fontSize">140%</property>
+                            <property name="fontStyle">normal</property>
+                            <property name="fontVariant">normal</property>
+                            <property name="paddingTop">0pt</property>
+                            <property name="paddingLeft">0pt</property>
+                            <property name="paddingBottom">0pt</property>
+                            <property name="paddingRight">0pt</property>
+                            <property name="resultSetColumn">SP_NAME</property>
+                        </data>
+                    </cell>
+                </row>
+            </header>
+            <detail>
+                <row id="15">
+                    <cell id="16">
+                        <property name="paddingTop">0mm</property>
+                        <property name="paddingLeft">0pt</property>
+                        <property name="paddingBottom">0pt</property>
+                        <property name="paddingRight">0pt</property>
+                        <data id="25">
+                            <property name="fontFamily">"幼圆"</property>
+                            <property name="fontSize">13pt</property>
+                            <property name="paddingTop">0pt</property>
+                            <property name="paddingLeft">0pt</property>
+                            <property name="paddingBottom">0pt</property>
+                            <property name="paddingRight">0pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">零售价</property>
+                        </data>
+                    </cell>
+                </row>
+                <row id="19">
+                    <cell id="20">
+                        <image id="9">
+                            <property name="height">0.3in</property>
+                            <property name="width">1.3020833333333333in</property>
+                            <property name="dataSet">Data Set</property>
+                            <list-property name="boundDataColumns">
+                                <structure>
+                                    <property name="name">图片路径</property>
+                                    <expression name="expression" type="javascript">dataSetRow["图片路径"]</expression>
+                                    <property name="dataType">string</property>
+                                </structure>
+                            </list-property>
+                            <property name="source">url</property>
+                            <expression name="uri" type="javascript">row["图片路径"]</expression>
+                        </image>
+                    </cell>
+                </row>
+            </detail>
+        </table>
+        <table id="167">
+            <property name="height">15mm</property>
+            <property name="dataSet">Data Set</property>
+            <list-property name="boundDataColumns">
+                <structure>
+                    <property name="name">副石</property>
+                    <text-property name="displayName">副石</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["副石"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">重量</property>
+                    <text-property name="displayName">重量</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["重量"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">石重</property>
+                    <text-property name="displayName">石重</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["石重"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">手寸</property>
+                    <text-property name="displayName">手寸</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["手寸"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+                <structure>
+                    <property name="name">证书号</property>
+                    <text-property name="displayName">证书号</text-property>
+                    <expression name="expression" type="javascript">dataSetRow["证书号"]</expression>
+                    <property name="dataType">string</property>
+                </structure>
+            </list-property>
+            <column id="183"/>
+            <column id="184"/>
+            <detail>
+                <row id="171">
+                    <cell id="172">
+                        <data id="185">
+                            <property name="fontFamily">"幼圆"</property>
+                            <property name="fontSize">5pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">副石</property>
+                        </data>
+                    </cell>
+                    <cell id="173">
+                        <data id="186">
+                            <property name="fontFamily">"幼圆"</property>
+                            <property name="fontSize">5pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">重量</property>
+                        </data>
+                    </cell>
+                </row>
+                <row id="174">
+                    <cell id="175">
+                        <data id="187">
+                            <property name="fontFamily">"幼圆"</property>
+                            <property name="fontSize">5pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">石重</property>
+                        </data>
+                    </cell>
+                    <cell id="176">
+                        <data id="188">
+                            <property name="fontFamily">"幼圆"</property>
+                            <property name="fontSize">5pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">手寸</property>
+                        </data>
+                    </cell>
+                </row>
+                <row id="177">
+                    <cell id="178">
+                        <data id="189">
+                            <property name="fontFamily">"幼圆"</property>
+                            <property name="fontSize">5pt</property>
+                            <property name="textAlign">center</property>
+                            <property name="resultSetColumn">证书号</property>
+                        </data>
+                    </cell>
+                    <cell id="179"/>
+                </row>
+            </detail>
+        </table>
+    </body>
+</report>

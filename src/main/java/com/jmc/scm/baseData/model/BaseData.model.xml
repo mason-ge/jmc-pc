@@ -1,0 +1,1158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Model>
+  <DataType name="dtProdBase">
+    <Property name="creationType">com.jmc.scm.baseData.model.ProdBaseInfo</Property>
+    <PropertyDef name="pkId">
+      <Property></Property>
+      <Property name="label">主键</Property>
+    </PropertyDef>
+    <PropertyDef name="client">
+      <Property></Property>
+      <Property name="label">客户端号</Property>
+    </PropertyDef>
+    <PropertyDef name="prodCode">
+      <Property></Property>
+      <Property name="label">商品编码</Property>
+      <Property name="required">true</Property>
+    </PropertyDef>
+    <PropertyDef name="prodName">
+      <Property></Property>
+      <Property name="label">商品名称</Property>
+      <Property name="required">true</Property>
+    </PropertyDef>
+    <PropertyDef name="otherProdCode">
+      <Property></Property>
+      <Property name="label">其他编码</Property>
+    </PropertyDef>
+    <PropertyDef name="brand">
+      <Property></Property>
+      <Property name="label">品牌</Property>
+    </PropertyDef>
+    <PropertyDef name="measUnit">
+      <Property></Property>
+      <Property name="label">计量单位</Property>
+      <Property name="mapping">
+        <Property name="mapValues">${dorado.getDataProvider(&quot;enumPR#getEnumvByEnumCode&quot;).getResult(&quot;UNIT&quot;)}</Property>
+        <Property name="keyProperty">enumvCode</Property>
+        <Property name="valueProperty">enumvName</Property>
+      </Property>
+    </PropertyDef>
+    <PropertyDef name="invtyUnit">
+      <Property></Property>
+      <Property name="label">存货单位(重量单位)</Property>
+      <Property name="mapping">
+        <Property name="mapValues">${dorado.getDataProvider(&quot;enumPR#getEnumvByEnumCode&quot;).getResult(&quot;UNIT&quot;)}</Property>
+        <Property name="keyProperty">enumvCode</Property>
+        <Property name="valueProperty">enumvName</Property>
+      </Property>
+    </PropertyDef>
+    <PropertyDef name="invtyMgtAttr">
+      <Property></Property>
+      <Property name="label">库存管理属性</Property>
+    </PropertyDef>
+    <PropertyDef name="supCode">
+      <Property></Property>
+      <Property name="label">供应商编码</Property>
+    </PropertyDef>
+    <PropertyDef name="supName">
+      <Property></Property>
+      <Property name="label">供应商名称</Property>
+    </PropertyDef>
+    <PropertyDef name="prodTheme">
+      <Property></Property>
+      <Property name="label">主题</Property>
+    </PropertyDef>
+    <PropertyDef name="firstRange">
+      <Property></Property>
+      <Property name="label">系列一</Property>
+    </PropertyDef>
+    <PropertyDef name="armType">
+      <Property></Property>
+      <Property name="label">臂型</Property>
+    </PropertyDef>
+    <PropertyDef name="model">
+      <Property></Property>
+      <Property name="label">造型</Property>
+    </PropertyDef>
+    <PropertyDef name="shape">
+      <Property></Property>
+      <Property name="label">形状</Property>
+    </PropertyDef>
+    <PropertyDef name="mosType">
+      <Property></Property>
+      <Property name="label">镶嵌方式</Property>
+    </PropertyDef>
+    <PropertyDef name="prodCraft">
+      <Property></Property>
+      <Property name="label">生产工艺</Property>
+    </PropertyDef>
+    <PropertyDef name="surfHandleRem">
+      <Property></Property>
+      <Property name="label">表面处理备注</Property>
+    </PropertyDef>
+    <PropertyDef name="otherCraftRem">
+      <Property></Property>
+      <Property name="label">其他工艺备注</Property>
+    </PropertyDef>
+    <PropertyDef name="cmptRem">
+      <Property></Property>
+      <Property name="label">配件备注</Property>
+    </PropertyDef>
+    <PropertyDef name="designRem">
+      <Property></Property>
+      <Property name="label">设计备注</Property>
+    </PropertyDef>
+    <PropertyDef name="createdBy">
+      <Property></Property>
+      <Property name="label">创建人</Property>
+      <Property name="mapping">
+        <Property name="mapValues">${dorado.getDataProvider(&quot;enumPR#getUserNameByCode&quot;).getResult(&quot;&quot;)}</Property>
+        <Property name="keyProperty">userCode</Property>
+        <Property name="valueProperty">userName</Property>
+      </Property>
+    </PropertyDef>
+    <PropertyDef name="createdD">
+      <Property name="dataType">Date</Property>
+      <Property name="label">创建时间</Property>
+    </PropertyDef>
+    <PropertyDef name="updatedBy">
+      <Property></Property>
+      <Property name="label">更新人</Property>
+      <Property name="mapping">
+        <Property name="mapValues">${dorado.getDataProvider(&quot;enumPR#getUserNameByCode&quot;).getResult(&quot;&quot;)}</Property>
+        <Property name="keyProperty">userCode</Property>
+        <Property name="valueProperty">userName</Property>
+      </Property>
+    </PropertyDef>
+    <PropertyDef name="updatedD">
+      <Property name="dataType">Date</Property>
+      <Property name="label">更新时间</Property>
+    </PropertyDef>
+    <PropertyDef name="attr1">
+      <Property></Property>
+      <Property name="label">扩展字段1</Property>
+    </PropertyDef>
+    <PropertyDef name="attr2">
+      <Property></Property>
+      <Property name="label">扩展字段2</Property>
+    </PropertyDef>
+    <PropertyDef name="attr3">
+      <Property></Property>
+      <Property name="label">扩展字段3</Property>
+    </PropertyDef>
+    <PropertyDef name="attr4">
+      <Property></Property>
+      <Property name="label">扩展字段4</Property>
+    </PropertyDef>
+    <PropertyDef name="attr5">
+      <Property></Property>
+      <Property name="label">扩展字段5</Property>
+    </PropertyDef>
+    <PropertyDef name="delFlg">
+      <Property></Property>
+      <Property name="label">删除标记</Property>
+    </PropertyDef>
+    <PropertyDef name="status">
+      <Property></Property>
+      <Property name="label">状态</Property>
+    </PropertyDef>
+    <PropertyDef name="firstCatg">
+      <Property></Property>
+      <Property name="label">品类一级</Property>
+      <Property name="mapping">
+        <Property name="keyProperty">enumvCode</Property>
+        <Property name="mapValues">${dorado.getDataProvider(&quot;enumPR#getEnumvByEnumCode&quot;).getResult(&quot;PLYJ&quot;)}</Property>
+        <Property name="valueProperty">enumvName</Property>
+      </Property>
+    </PropertyDef>
+    <PropertyDef name="secCatg">
+      <Property></Property>
+      <Property name="label">品类二级</Property>
+      <Property name="mapping">
+        <Property name="mapValues">${dorado.getDataProvider(&quot;enumPR#getEnumvByEnumCode&quot;).getResult(&quot;PLEJ&quot;)}</Property>
+        <Property name="keyProperty">enumvCode</Property>
+        <Property name="valueProperty">enumvName</Property>
+      </Property>
+    </PropertyDef>
+  </DataType>
+  <DataType name="dtClientBankInfo">
+    <Property name="matchType">com.jmc.scm.baseData.model.ClientBankInfo</Property>
+    <PropertyDef name="pkId">
+      <Property></Property>
+      <Property name="label">主键</Property>
+    </PropertyDef>
+    <PropertyDef name="client">
+      <Property></Property>
+      <Property name="label">客户端号</Property>
+    </PropertyDef>
+    <PropertyDef name="cltCode">
+      <Property></Property>
+      <Property name="label">客户编码</Property>
+    </PropertyDef>
+    <PropertyDef name="bankCntry">
+      <Property></Property>
+      <Property name="label">银行国家</Property>
+      <Property name="required">true</Property>
+    </PropertyDef>
+    <PropertyDef name="bankName">
+      <Property></Property>
+      <Property name="label">开户银行</Property>
+      <Property name="required">true</Property>
+    </PropertyDef>
+    <PropertyDef name="bankAcct">
+      <Property></Property>
+      <Property name="label">开户银行帐号 </Property>
+      <Property name="required">true</Property>
+    </PropertyDef>
+    <PropertyDef name="bankAcctName">
+      <Property></Property>
+      <Property name="label">银行开户名</Property>
+      <Property name="required">true</Property>
+    </PropertyDef>
+    <PropertyDef name="createdBy">
+      <Property></Property>
+      <Property name="label">创建人</Property>
+    </PropertyDef>
+    <PropertyDef name="createdD">
+      <Property name="dataType">Date</Property>
+      <Property name="label">创建时间</Property>
+    </PropertyDef>
+    <PropertyDef name="updatedBy">
+      <Property></Property>
+      <Property name="label">更新人</Property>
+    </PropertyDef>
+    <PropertyDef name="updatedD">
+      <Property name="dataType">Date</Property>
+      <Property name="label">更新时间</Property>
+    </PropertyDef>
+    <PropertyDef name="attr1">
+      <Property></Property>
+      <Property name="label">扩展字段1</Property>
+    </PropertyDef>
+    <PropertyDef name="attr2">
+      <Property></Property>
+      <Property name="label">扩展字段2</Property>
+    </PropertyDef>
+    <PropertyDef name="attr3">
+      <Property></Property>
+      <Property name="label">扩展字段3</Property>
+    </PropertyDef>
+    <PropertyDef name="attr4">
+      <Property></Property>
+      <Property name="label">扩展字段4</Property>
+    </PropertyDef>
+    <PropertyDef name="attr5">
+      <Property></Property>
+      <Property name="label">扩展字段5</Property>
+    </PropertyDef>
+    <PropertyDef name="delFlg">
+      <Property></Property>
+      <Property name="label">删除标记</Property>
+    </PropertyDef>
+  </DataType>
+  <DataType name="dtClientBaseInfo">
+    <Property name="matchType">com.jmc.scm.baseData.model.ClientBaseInfo</Property>
+    <PropertyDef name="pkId">
+      <Property></Property>
+      <Property name="label">主键</Property>
+    </PropertyDef>
+    <PropertyDef name="client">
+      <Property></Property>
+      <Property name="label">客户端号</Property>
+    </PropertyDef>
+    <PropertyDef name="cltCode">
+      <Property></Property>
+      <Property name="label">客户编码</Property>
+      <Property name="required">true</Property>
+    </PropertyDef>
+    <PropertyDef name="cltName">
+      <Property></Property>
+      <Property name="label">客户名称</Property>
+      <Property name="required">true</Property>
+    </PropertyDef>
+    <PropertyDef name="cltGrp">
+      <Property></Property>
+      <Property name="label">客户分类编码</Property>
+    </PropertyDef>
+    <PropertyDef name="shortName">
+      <Property></Property>
+      <Property name="label">客户简称</Property>
+    </PropertyDef>
+    <PropertyDef name="discountDesc">
+      <Property></Property>
+      <Property name="label">折扣描述</Property>
+    </PropertyDef>
+    <PropertyDef name="taxCode">
+      <Property></Property>
+      <Property name="label">税号</Property>
+    </PropertyDef>
+    <PropertyDef name="adr1">
+      <Property></Property>
+      <Property name="label">地址信息1</Property>
+    </PropertyDef>
+    <PropertyDef name="adr2">
+      <Property></Property>
+      <Property name="label">地址信息2</Property>
+    </PropertyDef>
+    <PropertyDef name="conName1">
+      <Property></Property>
+      <Property name="label">联系人1</Property>
+    </PropertyDef>
+    <PropertyDef name="conPhone1">
+      <Property></Property>
+      <Property name="label">联系人1电话</Property>
+    </PropertyDef>
+    <PropertyDef name="conMobile1">
+      <Property></Property>
+      <Property name="label">联系人1手机</Property>
+    </PropertyDef>
+    <PropertyDef name="conEmail1">
+      <Property></Property>
+      <Property name="label">联系人1邮件</Property>
+    </PropertyDef>
+    <PropertyDef name="conName2">
+      <Property></Property>
+      <Property name="label">联系人2</Property>
+    </PropertyDef>
+    <PropertyDef name="conPhone2">
+      <Property></Property>
+      <Property name="label">联系人2电话</Property>
+    </PropertyDef>
+    <PropertyDef name="conMobile2">
+      <Property></Property>
+      <Property name="label">联系人2手机</Property>
+    </PropertyDef>
+    <PropertyDef name="conEmail2">
+      <Property></Property>
+      <Property name="label">联系人2邮件</Property>
+    </PropertyDef>
+    <PropertyDef name="tel">
+      <Property></Property>
+      <Property name="label">固定电话</Property>
+    </PropertyDef>
+    <PropertyDef name="fax">
+      <Property></Property>
+      <Property name="label">传真号</Property>
+    </PropertyDef>
+    <PropertyDef name="email">
+      <Property></Property>
+      <Property name="label">EMAIL</Property>
+    </PropertyDef>
+    <PropertyDef name="cmpyWeb">
+      <Property></Property>
+      <Property name="label">公司官网</Property>
+    </PropertyDef>
+    <PropertyDef name="qq">
+      <Property></Property>
+      <Property name="label">QQ</Property>
+    </PropertyDef>
+    <PropertyDef name="wechat">
+      <Property></Property>
+      <Property name="label">微信</Property>
+    </PropertyDef>
+    <PropertyDef name="cltLvl">
+      <Property></Property>
+      <Property name="label">客户等级</Property>
+    </PropertyDef>
+    <PropertyDef name="remark">
+      <Property></Property>
+      <Property name="label">备注</Property>
+    </PropertyDef>
+    <PropertyDef name="payment">
+      <Property></Property>
+      <Property name="label">付款方式</Property>
+      <Property name="mapping">
+        <Property name="mapValues">${dorado.getDataProvider(&quot;enumPR#getEnumvByEnumCode&quot;).getResult(&quot;FKFS&quot;)}</Property>
+        <Property name="keyProperty">enumvCode</Property>
+        <Property name="valueProperty">enumvName</Property>
+      </Property>
+    </PropertyDef>
+    <PropertyDef name="createdBy">
+      <Property></Property>
+      <Property name="label">创建人</Property>
+      <Property name="mapping">
+        <Property name="mapValues">${dorado.getDataProvider(&quot;enumPR#getUserNameByCode&quot;).getResult(&quot;&quot;)}</Property>
+        <Property name="keyProperty">userCode</Property>
+        <Property name="valueProperty">userName</Property>
+      </Property>
+    </PropertyDef>
+    <PropertyDef name="createdD">
+      <Property name="dataType">Date</Property>
+      <Property name="label">创建时间</Property>
+    </PropertyDef>
+    <PropertyDef name="updatedBy">
+      <Property></Property>
+      <Property name="label">更新人</Property>
+      <Property name="mapping">
+        <Property name="mapValues">${dorado.getDataProvider(&quot;enumPR#getUserNameByCode&quot;).getResult(&quot;&quot;)}</Property>
+        <Property name="keyProperty">userCode</Property>
+        <Property name="valueProperty">userName</Property>
+      </Property>
+    </PropertyDef>
+    <PropertyDef name="updatedD">
+      <Property name="dataType">Date</Property>
+      <Property name="label">更新时间</Property>
+    </PropertyDef>
+    <PropertyDef name="attr1">
+      <Property></Property>
+      <Property name="label">扩展字段1</Property>
+    </PropertyDef>
+    <PropertyDef name="attr2">
+      <Property></Property>
+      <Property name="label">扩展字段2</Property>
+    </PropertyDef>
+    <PropertyDef name="attr3">
+      <Property></Property>
+      <Property name="label">扩展字段3</Property>
+    </PropertyDef>
+    <PropertyDef name="attr4">
+      <Property></Property>
+      <Property name="label">扩展字段4</Property>
+    </PropertyDef>
+    <PropertyDef name="attr5">
+      <Property></Property>
+      <Property name="label">扩展字段5</Property>
+    </PropertyDef>
+    <PropertyDef name="delFlg">
+      <Property></Property>
+      <Property name="label">删除标记</Property>
+    </PropertyDef>
+    <PropertyDef name="status">
+      <Property></Property>
+      <Property name="label">状态</Property>
+    </PropertyDef>
+    <PropertyDef name="thisYearAmt">
+      <Property name="dataType">BigDecimal</Property>
+      <Property name="label">本年销售额</Property>
+    </PropertyDef>
+    <PropertyDef name="totAmt">
+      <Property name="dataType">BigDecimal</Property>
+      <Property name="label">累计销售额</Property>
+    </PropertyDef>
+    <PropertyDef name="intclientCode">
+      <Property></Property>
+      <Property name="label">推荐客户编码</Property>
+    </PropertyDef>
+  </DataType>
+  <DataType name="dtSupplierBankInfo">
+    <Property name="matchType">com.jmc.scm.baseData.model.SupplierBankInfo</Property>
+    <PropertyDef name="pkId">
+      <Property></Property>
+      <Property name="label">主键</Property>
+    </PropertyDef>
+    <PropertyDef name="client">
+      <Property></Property>
+      <Property name="label">客户端号</Property>
+    </PropertyDef>
+    <PropertyDef name="supCode">
+      <Property></Property>
+      <Property name="label">供应商编码</Property>
+    </PropertyDef>
+    <PropertyDef name="bankCntry">
+      <Property></Property>
+      <Property name="label">银行国家</Property>
+      <Property name="required">true</Property>
+    </PropertyDef>
+    <PropertyDef name="bankName">
+      <Property></Property>
+      <Property name="label">开户银行</Property>
+      <Property name="required">true</Property>
+    </PropertyDef>
+    <PropertyDef name="bankAcct">
+      <Property></Property>
+      <Property name="label">开户银行帐号 </Property>
+      <Property name="required">true</Property>
+    </PropertyDef>
+    <PropertyDef name="bankAcctName">
+      <Property></Property>
+      <Property name="label">银行开户名</Property>
+      <Property name="required">true</Property>
+    </PropertyDef>
+    <PropertyDef name="createdBy">
+      <Property></Property>
+      <Property name="label">创建人</Property>
+    </PropertyDef>
+    <PropertyDef name="createdD">
+      <Property name="dataType">Date</Property>
+      <Property name="label">创建时间</Property>
+    </PropertyDef>
+    <PropertyDef name="updatedBy">
+      <Property></Property>
+      <Property name="label">更新人</Property>
+    </PropertyDef>
+    <PropertyDef name="updatedD">
+      <Property name="dataType">Date</Property>
+      <Property name="label">更新时间</Property>
+    </PropertyDef>
+    <PropertyDef name="attr1">
+      <Property></Property>
+      <Property name="label">扩展字段1</Property>
+    </PropertyDef>
+    <PropertyDef name="attr2">
+      <Property></Property>
+      <Property name="label">扩展字段2</Property>
+    </PropertyDef>
+    <PropertyDef name="attr3">
+      <Property></Property>
+      <Property name="label">扩展字段3</Property>
+    </PropertyDef>
+    <PropertyDef name="attr4">
+      <Property></Property>
+      <Property name="label">扩展字段4</Property>
+    </PropertyDef>
+    <PropertyDef name="attr5">
+      <Property></Property>
+      <Property name="label">扩展字段5</Property>
+    </PropertyDef>
+    <PropertyDef name="delFlg">
+      <Property></Property>
+      <Property name="label">删除标记</Property>
+    </PropertyDef>
+  </DataType>
+  <DataType name="dtSupplierBaseInfo">
+    <Property name="matchType">com.jmc.scm.baseData.model.SupplierBaseInfo</Property>
+    <PropertyDef name="pkId">
+      <Property></Property>
+      <Property name="label">主键</Property>
+    </PropertyDef>
+    <PropertyDef name="client">
+      <Property></Property>
+      <Property name="label">客户端号</Property>
+    </PropertyDef>
+    <PropertyDef name="supCode">
+      <Property></Property>
+      <Property name="label">供应商编码</Property>
+      <Property name="required">true</Property>
+    </PropertyDef>
+    <PropertyDef name="supName">
+      <Property></Property>
+      <Property name="label">供应商名称</Property>
+      <Property name="required">true</Property>
+    </PropertyDef>
+    <PropertyDef name="supGrp">
+      <Property></Property>
+      <Property name="label">供应商分类编码</Property>
+    </PropertyDef>
+    <PropertyDef name="shortName">
+      <Property></Property>
+      <Property name="label">供应商简称</Property>
+    </PropertyDef>
+    <PropertyDef name="taxCode">
+      <Property></Property>
+      <Property name="label">税号</Property>
+    </PropertyDef>
+    <PropertyDef name="adr1">
+      <Property></Property>
+      <Property name="label">地址信息1</Property>
+    </PropertyDef>
+    <PropertyDef name="adr2">
+      <Property></Property>
+      <Property name="label">地址信息2</Property>
+    </PropertyDef>
+    <PropertyDef name="conName1">
+      <Property></Property>
+      <Property name="label">联系人1</Property>
+    </PropertyDef>
+    <PropertyDef name="conPhone1">
+      <Property></Property>
+      <Property name="label">联系人1电话</Property>
+    </PropertyDef>
+    <PropertyDef name="conMobile1">
+      <Property></Property>
+      <Property name="label">联系人1手机</Property>
+    </PropertyDef>
+    <PropertyDef name="conEmail1">
+      <Property></Property>
+      <Property name="label">联系人1邮件</Property>
+    </PropertyDef>
+    <PropertyDef name="conName2">
+      <Property></Property>
+      <Property name="label">联系人2</Property>
+    </PropertyDef>
+    <PropertyDef name="conPhone2">
+      <Property></Property>
+      <Property name="label">联系人2电话</Property>
+    </PropertyDef>
+    <PropertyDef name="conMobile2">
+      <Property></Property>
+      <Property name="label">联系人2手机</Property>
+    </PropertyDef>
+    <PropertyDef name="conEmail2">
+      <Property></Property>
+      <Property name="label">联系人2邮件</Property>
+    </PropertyDef>
+    <PropertyDef name="tel">
+      <Property></Property>
+      <Property name="label">固定电话</Property>
+    </PropertyDef>
+    <PropertyDef name="fax">
+      <Property></Property>
+      <Property name="label">传真号</Property>
+    </PropertyDef>
+    <PropertyDef name="email">
+      <Property></Property>
+      <Property name="label">EMAIL</Property>
+    </PropertyDef>
+    <PropertyDef name="cmpyWeb">
+      <Property></Property>
+      <Property name="label">公司官网</Property>
+    </PropertyDef>
+    <PropertyDef name="qq">
+      <Property></Property>
+      <Property name="label">QQ</Property>
+    </PropertyDef>
+    <PropertyDef name="wechat">
+      <Property></Property>
+      <Property name="label">微信</Property>
+    </PropertyDef>
+    <PropertyDef name="scale">
+      <Property></Property>
+      <Property name="label">规模</Property>
+    </PropertyDef>
+    <PropertyDef name="capacity">
+      <Property></Property>
+      <Property name="label">产能</Property>
+    </PropertyDef>
+    <PropertyDef name="goodAtField1">
+      <Property></Property>
+      <Property name="label">擅长品类</Property>
+    </PropertyDef>
+    <PropertyDef name="supLvl">
+      <Property></Property>
+      <Property name="label">供应商等级</Property>
+    </PropertyDef>
+    <PropertyDef name="remark">
+      <Property></Property>
+      <Property name="label">备注</Property>
+    </PropertyDef>
+    <PropertyDef name="payment">
+      <Property></Property>
+      <Property name="label">付款方式</Property>
+      <Property name="mapping">
+        <Property name="mapValues">${dorado.getDataProvider(&quot;enumPR#getEnumvByEnumCode&quot;).getResult(&quot;FKFS&quot;)}</Property>
+        <Property name="keyProperty">enumvCode</Property>
+        <Property name="valueProperty">enumvName</Property>
+      </Property>
+    </PropertyDef>
+    <PropertyDef name="createdBy">
+      <Property></Property>
+      <Property name="label">创建人</Property>
+      <Property name="mapping">
+        <Property name="mapValues">${dorado.getDataProvider(&quot;enumPR#getUserNameByCode&quot;).getResult(&quot;&quot;)}</Property>
+        <Property name="keyProperty">userCode</Property>
+        <Property name="valueProperty">userName</Property>
+      </Property>
+    </PropertyDef>
+    <PropertyDef name="createdD">
+      <Property name="dataType">Date</Property>
+      <Property name="label">创建时间</Property>
+    </PropertyDef>
+    <PropertyDef name="updatedBy">
+      <Property></Property>
+      <Property name="label">更新人</Property>
+      <Property name="mapping">
+        <Property name="keyProperty">userCode</Property>
+        <Property name="valueProperty">userName</Property>
+        <Property name="mapValues">${dorado.getDataProvider(&quot;enumPR#getUserNameByCode&quot;).getResult(&quot;&quot;)}</Property>
+      </Property>
+    </PropertyDef>
+    <PropertyDef name="updatedD">
+      <Property name="dataType">Date</Property>
+      <Property name="label">更新时间</Property>
+    </PropertyDef>
+    <PropertyDef name="attr1">
+      <Property></Property>
+      <Property name="label">扩展字段1</Property>
+    </PropertyDef>
+    <PropertyDef name="attr2">
+      <Property></Property>
+      <Property name="label">扩展字段2</Property>
+    </PropertyDef>
+    <PropertyDef name="attr3">
+      <Property></Property>
+      <Property name="label">扩展字段3</Property>
+    </PropertyDef>
+    <PropertyDef name="attr4">
+      <Property></Property>
+      <Property name="label">扩展字段4</Property>
+    </PropertyDef>
+    <PropertyDef name="attr5">
+      <Property></Property>
+      <Property name="label">扩展字段5</Property>
+    </PropertyDef>
+    <PropertyDef name="delFlg">
+      <Property></Property>
+      <Property name="label">删除标记</Property>
+    </PropertyDef>
+    <PropertyDef name="status">
+      <Property></Property>
+      <Property name="label">状态</Property>
+    </PropertyDef>
+  </DataType>
+  <DataType name="dtProdShop">
+    <Property name="creationType">com.jmc.scm.baseData.model.ProdShopping</Property>
+    <PropertyDef name="pkId">
+      <Property></Property>
+      <Property name="label">主键</Property>
+    </PropertyDef>
+    <PropertyDef name="client">
+      <Property></Property>
+      <Property name="label">客户端号</Property>
+    </PropertyDef>
+    <PropertyDef name="prodCode">
+      <Property></Property>
+      <Property name="label">商品编码</Property>
+    </PropertyDef>
+    <PropertyDef name="prodName">
+      <Property></Property>
+      <Property name="label">商品名称</Property>
+    </PropertyDef>
+    <PropertyDef name="inlaiedScoop">
+      <Property name="dataType">BigDecimal</Property>
+      <Property name="label">镶口</Property>
+    </PropertyDef>
+    <PropertyDef name="size">
+      <Property></Property>
+      <Property name="label">尺码</Property>
+    </PropertyDef>
+    <PropertyDef name="nums">
+      <Property name="dataType">BigDecimal</Property>
+      <Property name="label">数量</Property>
+    </PropertyDef>
+    <PropertyDef name="goldColor">
+      <Property></Property>
+      <Property name="label">金成色</Property>
+      <Property name="mapping">
+        <Property name="mapValues">${dorado.getDataProvider(&quot;enumPR#getEnumvByEnumCode&quot;).getResult(&quot;JCS&quot;)}</Property>
+        <Property name="keyProperty">enumvCode</Property>
+        <Property name="valueProperty">enumvName</Property>
+      </Property>
+    </PropertyDef>
+    <PropertyDef name="remark">
+      <Property></Property>
+      <Property name="label">备注</Property>
+    </PropertyDef>
+    <PropertyDef name="createdBy">
+      <Property></Property>
+      <Property name="label">创建人</Property>
+    </PropertyDef>
+    <PropertyDef name="createdD">
+      <Property name="dataType">Date</Property>
+      <Property name="label">创建时间</Property>
+    </PropertyDef>
+    <PropertyDef name="updatedBy">
+      <Property></Property>
+      <Property name="label">更新人</Property>
+    </PropertyDef>
+    <PropertyDef name="updatedD">
+      <Property name="dataType">Date</Property>
+      <Property name="label">更新时间</Property>
+    </PropertyDef>
+    <PropertyDef name="attr1">
+      <Property></Property>
+      <Property name="label">扩展字段1</Property>
+    </PropertyDef>
+    <PropertyDef name="attr2">
+      <Property></Property>
+      <Property name="label">扩展字段2</Property>
+    </PropertyDef>
+    <PropertyDef name="attr3">
+      <Property></Property>
+      <Property name="label">扩展字段3</Property>
+    </PropertyDef>
+    <PropertyDef name="attr4">
+      <Property></Property>
+      <Property name="label">扩展字段4</Property>
+    </PropertyDef>
+    <PropertyDef name="attr5">
+      <Property></Property>
+      <Property name="label">扩展字段5</Property>
+    </PropertyDef>
+    <PropertyDef name="delFlg">
+      <Property></Property>
+      <Property name="label">删除标记</Property>
+    </PropertyDef>
+  </DataType>
+  <DataType name="dtSalePoMain">
+    <Property name="creationType">com.jmc.scm.baseData.model.SalePoMain</Property>
+    <PropertyDef name="pkId">
+      <Property></Property>
+      <Property name="label">主键</Property>
+    </PropertyDef>
+    <PropertyDef name="client">
+      <Property></Property>
+      <Property name="label">客户端号</Property>
+    </PropertyDef>
+    <PropertyDef name="salePoCode">
+      <Property></Property>
+      <Property name="label">销售订单号</Property>
+    </PropertyDef>
+    <PropertyDef name="salePoType">
+      <Property></Property>
+      <Property name="label">销售订单类型</Property>
+      <Property name="required">true</Property>
+    </PropertyDef>
+    <PropertyDef name="status">
+      <Property></Property>
+      <Property name="label">状态</Property>
+      <Property name="mapping">
+        <Property name="mapValues">${dorado.getDataProvider(&quot;enumPR#getEnumvByEnumCode&quot;).getResult(&quot;SO_STATUS&quot;)}</Property>
+        <Property name="keyProperty">enumvCode</Property>
+        <Property name="valueProperty">enumvName</Property>
+      </Property>
+    </PropertyDef>
+    <PropertyDef name="deliDate">
+      <Property name="dataType">Date</Property>
+      <Property name="label">发货日期</Property>
+    </PropertyDef>
+    <PropertyDef name="cltCode">
+      <Property></Property>
+      <Property name="label">客户编码</Property>
+    </PropertyDef>
+    <PropertyDef name="cltName">
+      <Property></Property>
+      <Property name="label">客户名称</Property>
+    </PropertyDef>
+    <PropertyDef name="cltAdd">
+      <Property></Property>
+      <Property name="label">客户地址</Property>
+    </PropertyDef>
+    <PropertyDef name="phone">
+      <Property name="dataType">BigDecimal</Property>
+      <Property name="label">联系电话</Property>
+    </PropertyDef>
+    <PropertyDef name="disctCmmt">
+      <Property></Property>
+      <Property name="label">折扣说明</Property>
+    </PropertyDef>
+    <PropertyDef name="expressCmpy">
+      <Property></Property>
+      <Property name="label">快递公司</Property>
+    </PropertyDef>
+    <PropertyDef name="expressCode">
+      <Property></Property>
+      <Property name="label">快递单号</Property>
+    </PropertyDef>
+    <PropertyDef name="remark">
+      <Property></Property>
+      <Property name="label">备注</Property>
+    </PropertyDef>
+    <PropertyDef name="submitBy">
+      <Property></Property>
+      <Property name="label">提交人</Property>
+    </PropertyDef>
+    <PropertyDef name="submitD">
+      <Property name="dataType">Date</Property>
+      <Property name="label">提交时间</Property>
+    </PropertyDef>
+    <PropertyDef name="createdBy">
+      <Property></Property>
+      <Property name="label">创建人</Property>
+    </PropertyDef>
+    <PropertyDef name="createdD">
+      <Property name="dataType">Date</Property>
+      <Property name="label">创建时间</Property>
+    </PropertyDef>
+    <PropertyDef name="updatedBy">
+      <Property></Property>
+      <Property name="label">更新人</Property>
+    </PropertyDef>
+    <PropertyDef name="updatedD">
+      <Property name="dataType">Date</Property>
+      <Property name="label">更新时间</Property>
+    </PropertyDef>
+    <PropertyDef name="attr1">
+      <Property></Property>
+      <Property name="label">扩展字段1</Property>
+    </PropertyDef>
+    <PropertyDef name="attr2">
+      <Property></Property>
+      <Property name="label">扩展字段2</Property>
+    </PropertyDef>
+    <PropertyDef name="attr3">
+      <Property></Property>
+      <Property name="label">扩展字段3</Property>
+    </PropertyDef>
+    <PropertyDef name="attr4">
+      <Property></Property>
+      <Property name="label">扩展字段4</Property>
+    </PropertyDef>
+    <PropertyDef name="attr5">
+      <Property></Property>
+      <Property name="label">扩展字段5</Property>
+    </PropertyDef>
+    <PropertyDef name="delFlg">
+      <Property></Property>
+      <Property name="label">删除标记</Property>
+    </PropertyDef>
+    <PropertyDef name="payCon">
+      <Property></Property>
+      <Property name="label">付款条件</Property>
+      <Property name="mapping">
+        <Property name="mapValues">${dorado.getDataProvider(&quot;enumPR#getEnumvByEnumCode&quot;).getResult(&quot;FKTJ&quot;)}</Property>
+        <Property name="keyProperty">enumvCode</Property>
+        <Property name="valueProperty">enumvName</Property>
+      </Property>
+    </PropertyDef>
+    <PropertyDef name="payment">
+      <Property></Property>
+      <Property name="label">付款方式</Property>
+      <Property name="mapping">
+        <Property name="mapValues">${dorado.getDataProvider(&quot;enumPR#getEnumvByEnumCode&quot;).getResult(&quot;FKFS&quot;)}</Property>
+        <Property name="keyProperty">enumvCode</Property>
+        <Property name="valueProperty">enumvName</Property>
+      </Property>
+    </PropertyDef>
+    <PropertyDef name="cancelReason">
+      <Property></Property>
+      <Property name="label">取消原因</Property>
+    </PropertyDef>
+  </DataType>
+  <DataType name="dtSalePoItem">
+    <Property name="creationType">com.jmc.scm.baseData.model.SalePoItem</Property>
+    <PropertyDef name="pkId">
+      <Property></Property>
+      <Property name="label">主键</Property>
+    </PropertyDef>
+    <PropertyDef name="client">
+      <Property></Property>
+      <Property name="label">客户端号</Property>
+    </PropertyDef>
+    <PropertyDef name="salePoCode">
+      <Property></Property>
+      <Property name="label">销售订单号</Property>
+    </PropertyDef>
+    <PropertyDef name="itemCode">
+      <Property></Property>
+      <Property name="label">行项目号</Property>
+    </PropertyDef>
+    <PropertyDef name="inlaiedScoop">
+      <Property name="dataType">BigDecimal</Property>
+      <Property name="label">镶口</Property>
+    </PropertyDef>
+    <PropertyDef name="size">
+      <Property></Property>
+      <Property name="label">尺码</Property>
+    </PropertyDef>
+    <PropertyDef name="nums">
+      <Property name="dataType">BigDecimal</Property>
+      <Property name="label">数量</Property>
+    </PropertyDef>
+    <PropertyDef name="goldColor">
+      <Property></Property>
+      <Property name="label">金成色</Property>
+      <Property name="mapping">
+        <Property name="keyProperty">enumvCode</Property>
+        <Property name="mapValues">${dorado.getDataProvider(&quot;enumPR#getEnumvByEnumCode&quot;).getResult(&quot;JCS&quot;)}</Property>
+        <Property name="valueProperty">enumvName</Property>
+      </Property>
+    </PropertyDef>
+    <PropertyDef name="remark">
+      <Property></Property>
+      <Property name="label">备注</Property>
+    </PropertyDef>
+    <PropertyDef name="createdBy">
+      <Property></Property>
+      <Property name="label">创建人</Property>
+    </PropertyDef>
+    <PropertyDef name="createdD">
+      <Property name="dataType">Date</Property>
+      <Property name="label">创建时间</Property>
+    </PropertyDef>
+    <PropertyDef name="updatedBy">
+      <Property></Property>
+      <Property name="label">更新人</Property>
+    </PropertyDef>
+    <PropertyDef name="updatedD">
+      <Property name="dataType">Date</Property>
+      <Property name="label">更新时间</Property>
+    </PropertyDef>
+    <PropertyDef name="attr1">
+      <Property></Property>
+      <Property name="label">扩展字段1</Property>
+    </PropertyDef>
+    <PropertyDef name="attr2">
+      <Property></Property>
+      <Property name="label">扩展字段2</Property>
+    </PropertyDef>
+    <PropertyDef name="attr3">
+      <Property></Property>
+      <Property name="label">扩展字段3</Property>
+    </PropertyDef>
+    <PropertyDef name="attr4">
+      <Property></Property>
+      <Property name="label">扩展字段4</Property>
+    </PropertyDef>
+    <PropertyDef name="attr5">
+      <Property></Property>
+      <Property name="label">扩展字段5</Property>
+    </PropertyDef>
+    <PropertyDef name="delFlg">
+      <Property></Property>
+      <Property name="label">删除标记</Property>
+    </PropertyDef>
+    <PropertyDef name="prodCode">
+      <Property></Property>
+      <Property name="label">商品编码</Property>
+    </PropertyDef>
+    <PropertyDef name="prodName">
+      <Property></Property>
+      <Property name="label">商品名称</Property>
+    </PropertyDef>
+  </DataType>
+  <DataType name="dtClientBp">
+    <Property name="creationType">com.jmc.scm.baseData.model.ClientBp</Property>
+    <PropertyDef name="pkId">
+      <Property></Property>
+      <Property name="label">主键</Property>
+    </PropertyDef>
+    <PropertyDef name="client">
+      <Property></Property>
+      <Property name="label">客户端号</Property>
+    </PropertyDef>
+    <PropertyDef name="cltCode">
+      <Property></Property>
+      <Property name="label">客户编码</Property>
+    </PropertyDef>
+    <PropertyDef name="cltName">
+      <Property></Property>
+      <Property name="label">客户名称</Property>
+    </PropertyDef>
+    <PropertyDef name="bp">
+      <Property name="dataType">BigDecimal</Property>
+      <Property name="label">积分</Property>
+    </PropertyDef>
+    <PropertyDef name="createdBy">
+      <Property></Property>
+      <Property name="label">创建人</Property>
+    </PropertyDef>
+    <PropertyDef name="createdD">
+      <Property name="dataType">Date</Property>
+      <Property name="label">创建时间</Property>
+    </PropertyDef>
+    <PropertyDef name="updatedBy">
+      <Property></Property>
+      <Property name="label">更新人</Property>
+    </PropertyDef>
+    <PropertyDef name="updatedD">
+      <Property name="dataType">Date</Property>
+      <Property name="label">更新时间</Property>
+    </PropertyDef>
+    <PropertyDef name="attr1">
+      <Property></Property>
+      <Property name="label">扩展字段1</Property>
+    </PropertyDef>
+    <PropertyDef name="attr2">
+      <Property></Property>
+      <Property name="label">扩展字段2</Property>
+    </PropertyDef>
+    <PropertyDef name="attr3">
+      <Property></Property>
+      <Property name="label">扩展字段3</Property>
+    </PropertyDef>
+    <PropertyDef name="attr4">
+      <Property></Property>
+      <Property name="label">扩展字段4</Property>
+    </PropertyDef>
+    <PropertyDef name="attr5">
+      <Property></Property>
+      <Property name="label">扩展字段5</Property>
+    </PropertyDef>
+  </DataType>
+  <DataType name="dtClientBpChangeList">
+    <Property name="creationType">com.jmc.scm.baseData.model.ClientBpChangeList</Property>
+    <PropertyDef name="pkId">
+      <Property></Property>
+      <Property name="label">主键</Property>
+    </PropertyDef>
+    <PropertyDef name="client">
+      <Property></Property>
+      <Property name="label">客户端号</Property>
+    </PropertyDef>
+    <PropertyDef name="cltCode">
+      <Property></Property>
+      <Property name="label">客户编码</Property>
+    </PropertyDef>
+    <PropertyDef name="cltName">
+      <Property></Property>
+      <Property name="label">客户名称</Property>
+    </PropertyDef>
+    <PropertyDef name="bp">
+      <Property name="dataType">BigDecimal</Property>
+      <Property name="label">积分</Property>
+    </PropertyDef>
+    <PropertyDef name="changeRsn">
+      <Property></Property>
+      <Property name="label">变更原因</Property>
+      <Property name="mapping">
+        <Property name="mapValues">${dorado.getDataProvider(&quot;enumPR#getEnumvByEnumCode&quot;).getResult(&quot;CHANGE_RSN&quot;)}</Property>
+        <Property name="keyProperty">enumvCode</Property>
+        <Property name="valueProperty">enumvName</Property>
+      </Property>
+    </PropertyDef>
+    <PropertyDef name="saleCode">
+      <Property></Property>
+      <Property name="label">销售出库单号</Property>
+    </PropertyDef>
+    <PropertyDef name="remark">
+      <Property></Property>
+      <Property name="label">备注</Property>
+    </PropertyDef>
+    <PropertyDef name="createdBy">
+      <Property></Property>
+      <Property name="label">创建人</Property>
+      <Property name="mapping">
+        <Property name="keyProperty">userCode</Property>
+        <Property name="mapValues">${dorado.getDataProvider(&quot;enumPR#getUserNameByCode&quot;).getResult(&quot;&quot;)}</Property>
+        <Property name="valueProperty">userName</Property>
+      </Property>
+    </PropertyDef>
+    <PropertyDef name="createdD">
+      <Property name="dataType">Date</Property>
+      <Property name="label">创建时间</Property>
+    </PropertyDef>
+    <PropertyDef name="updatedBy">
+      <Property></Property>
+      <Property name="label">更新人</Property>
+    </PropertyDef>
+    <PropertyDef name="updatedD">
+      <Property name="dataType">Date</Property>
+      <Property name="label">更新时间</Property>
+    </PropertyDef>
+    <PropertyDef name="attr1">
+      <Property></Property>
+      <Property name="label">扩展字段1</Property>
+    </PropertyDef>
+    <PropertyDef name="attr2">
+      <Property></Property>
+      <Property name="label">扩展字段2</Property>
+    </PropertyDef>
+    <PropertyDef name="attr3">
+      <Property></Property>
+      <Property name="label">扩展字段3</Property>
+    </PropertyDef>
+    <PropertyDef name="attr4">
+      <Property></Property>
+      <Property name="label">扩展字段4</Property>
+    </PropertyDef>
+    <PropertyDef name="attr5">
+      <Property></Property>
+      <Property name="label">扩展字段5</Property>
+    </PropertyDef>
+  </DataType>
+  <DataType name="dtClientBpMoneyRelat">
+    <Property name="creationType">com.jmc.scm.baseData.model.ClientBpMoneyRelat</Property>
+    <PropertyDef name="client">
+      <Property></Property>
+      <Property name="label">客户端号</Property>
+    </PropertyDef>
+    <PropertyDef name="xbp">
+      <Property name="dataType">BigDecimal</Property>
+      <Property name="label">X积分</Property>
+    </PropertyDef>
+    <PropertyDef name="ymoney">
+      <Property name="dataType">BigDecimal</Property>
+      <Property name="label">金额</Property>
+    </PropertyDef>
+  </DataType>
+</Model>

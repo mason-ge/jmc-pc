@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewConfig>
+  <Arguments/>
+  <Context/>
+  <Model>
+    <DataType name="dtCondition">
+      <PropertyDef name="cltCode">
+        <Property name="label">客户编码</Property>
+      </PropertyDef>
+      <PropertyDef name="cltName">
+        <Property name="label">客户名称</Property>
+      </PropertyDef>
+    </DataType>
+    <DataType name="dtMain" parent="dtClientBaseInfo">
+      <PropertyDef name="cltCode">
+        <Property name="label">客户编码</Property>
+      </PropertyDef>
+      <PropertyDef name="cltName">
+        <Property name="label">客户名称</Property>
+      </PropertyDef>
+      <PropertyDef name="bp">
+        <Property name="label">积分余额</Property>
+        <Property name="dataType">BigDecimal</Property>
+      </PropertyDef>
+      <Reference name="refDetail">
+        <Property name="dataType">[dtChangeDetail]</Property>
+        <Property name="dataProvider">cltBpController#getBpChangeList</Property>
+        <Property name="parameter">$${this.cltCode}</Property>
+      </Reference>
+    </DataType>
+    <DataType name="dtChangeDetail" parent="dtClientBpChangeList">
+      <PropertyDef name="bp">
+        <Property name="dataType">BigDecimal</Property>
+        <Property name="label">本次变更积分</Property>
+        <Property name="required">true</Property>
+      </PropertyDef>
+    </DataType>
+  </Model>
+  <View>
+    <DataSet id="dsCondition">
+      <Property name="dataType">dtCondition</Property>
+    </DataSet>
+    <DataSet id="dsMain">
+      <Property name="dataType">[dtMain]</Property>
+      <Property name="dataProvider">cltBpController#getCltBpListPage</Property>
+      <Property name="loadMode">manual</Property>
+      <Property name="pageSize">50</Property>
+    </DataSet>
+    <DataSet id="dsNew">
+      <Property name="dataType">dtChangeDetail</Property>
+    </DataSet>
+    <FieldSet>
+      <Property name="caption">查询条件</Property>
+      <Buttons/>
+      <Children>
+        <AutoForm>
+          <Property name="dataSet">dsCondition</Property>
+          <Property name="cols">*,*,*,*</Property>
+          <Property name="labelWidth">100</Property>
+          <AutoFormElement>
+            <Property name="name">cltCode</Property>
+            <Property name="property">cltCode</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">cltName</Property>
+            <Property name="property">cltName</Property>
+            <Editor/>
+          </AutoFormElement>
+        </AutoForm>
+      </Children>
+    </FieldSet>
+    <ToolBar>
+      <DataPilot>
+        <Property name="itemCodes">pages,pageSize</Property>
+        <Property name="dataSet">dsMain</Property>
+      </DataPilot>
+      <ToolBarButton id="btnQuery">
+        <Property name="caption">查询</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -40px -100px</Property>
+        <Property name="width">70</Property>
+      </ToolBarButton>
+      <ToolBarButton id="btnReset">
+        <Property name="caption">重置</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -20px -200px</Property>
+        <Property name="width">70</Property>
+      </ToolBarButton>
+      <ToolBarButton id="btnMod">
+        <Property name="caption">变更积分</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -120px -0px</Property>
+      </ToolBarButton>
+    </ToolBar>
+    <SplitPanel>
+      <Property name="direction">right</Property>
+      <Property name="position">1000</Property>
+      <MainControl>
+        <Container>
+          <DataGrid id="dgMain">
+            <Property name="dataSet">dsMain</Property>
+            <Property name="readOnly">true</Property>
+            <RowNumColumn/>
+            <DataColumn>
+              <Property name="property">cltCode</Property>
+              <Property name="align">center</Property>
+              <Property name="name">cltCode</Property>
+            </DataColumn>
+            <DataColumn>
+              <Property name="property">cltName</Property>
+              <Property name="align">left</Property>
+              <Property name="name">cltName</Property>
+            </DataColumn>
+            <DataColumn name="bp">
+              <Property name="property">bp</Property>
+              <Property name="align">right</Property>
+            </DataColumn>
+          </DataGrid>
+        </Container>
+      </MainControl>
+      <SideControl>
+        <Container>
+          <DataGrid id="dgItem">
+            <Property name="dataSet">dsMain</Property>
+            <Property name="dataPath">#.refDetail</Property>
+            <Property name="readOnly">true</Property>
+            <RowNumColumn/>
+            <DataColumn name="saleCode">
+              <Property name="property">saleCode</Property>
+              <Property name="align">center</Property>
+            </DataColumn>
+            <DataColumn name="bp">
+              <Property name="property">bp</Property>
+              <Property name="align">right</Property>
+            </DataColumn>
+            <DataColumn name="changeRsn">
+              <Property name="property">changeRsn</Property>
+              <Property name="align">center</Property>
+            </DataColumn>
+            <DataColumn name="createdD">
+              <Property name="property">createdD</Property>
+              <Property name="align">center</Property>
+              <Property name="caption">变更时间</Property>
+            </DataColumn>
+            <DataColumn name="createdBy">
+              <Property name="property">createdBy</Property>
+              <Property name="align">center</Property>
+              <Property name="caption">变更人</Property>
+            </DataColumn>
+            <DataColumn name="remark">
+              <Property name="property">remark</Property>
+              <Property name="align">center</Property>
+            </DataColumn>
+          </DataGrid>
+        </Container>
+      </SideControl>
+    </SplitPanel>
+    <Dialog id="dlgBp">
+      <Property name="width">300</Property>
+      <Property name="height">200</Property>
+      <Property name="caption">积分变更</Property>
+      <Buttons>
+        <Button id="btnSure">
+          <Property name="caption">确认</Property>
+          <Property name="icon">url(>skin>common/icons.gif) -20px -0px</Property>
+        </Button>
+        <Button id="btCancel">
+          <Property name="caption">取消</Property>
+          <Property name="icon">url(>skin>common/icons.gif) -40px -0px</Property>
+        </Button>
+      </Buttons>
+      <Children>
+        <AutoForm>
+          <Property name="dataSet">dsNew</Property>
+          <Property name="cols">*</Property>
+          <Property name="labelWidth">100</Property>
+          <AutoFormElement>
+            <Property name="name">bp</Property>
+            <Property name="property">bp</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">changeRsn</Property>
+            <Property name="property">changeRsn</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement layoutConstraint="colSpan:2">
+            <Property name="name">remark</Property>
+            <Property name="property">remark</Property>
+            <Editor/>
+          </AutoFormElement>
+        </AutoForm>
+      </Children>
+      <Tools/>
+    </Dialog>
+    <UpdateAction id="uaSaveChange">
+      <Property name="dataResolver">cltBpController#saveChangeList</Property>
+      <Property name="successMessage">保存成功！</Property>
+      <UpdateItem>
+        <Property name="dataSet">dsNew</Property>
+        <Property name="dataPath">[#current]</Property>
+        <Property name="alias">dsNew</Property>
+      </UpdateItem>
+    </UpdateAction>
+  </View>
+</ViewConfig>

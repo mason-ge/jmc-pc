@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewConfig>
+  <Arguments/>
+  <Context/>
+  <Model>
+    <DataType name="dtCondition">
+      <PropertyDef name="prodCode">
+        <Property></Property>
+        <Property name="label">商品编码</Property>
+      </PropertyDef>
+      <PropertyDef name="prodName">
+        <Property></Property>
+        <Property name="label">商品名称</Property>
+      </PropertyDef>
+      <PropertyDef name="poType">
+        <Property name="label">采购订单类型</Property>
+      </PropertyDef>
+    </DataType>
+    <DataType name="dtMain" parent="dtProdBaseVo"/>
+  </Model>
+  <View>
+    <DataSet id="dsCondition">
+      <Property name="dataType">dtCondition</Property>
+      <Property name="loadMode">manual</Property>
+    </DataSet>
+    <DataSet id="dsMain">
+      <Property name="dataType">[dtMain]</Property>
+      <Property name="loadMode">manual</Property>
+      <Property name="pageSize">50</Property>
+      <Property name="dataProvider">prodBasePR#getPrdBaseVoPage</Property>
+    </DataSet>
+    <DataSet id="dsPushEntity">
+      <Property name="dataType">dtMain</Property>
+      <Property name="loadMode">manual</Property>
+      <Property name="dataProvider">prodBasePR#getPrdBaseVo</Property>
+    </DataSet>
+    <DataSet id="dsPushEntitys">
+      <Property name="dataType">[dtMain]</Property>
+      <Property name="loadMode">manual</Property>
+      <Property name="dataProvider">prodBasePR#getProdBaseListByCodes</Property>
+    </DataSet>
+    <FieldSet>
+      <Property name="caption">查询条件</Property>
+      <Buttons/>
+      <Children>
+        <AutoForm id="afCondition">
+          <Property name="dataSet">dsCondition</Property>
+          <Property name="cols">300,300</Property>
+          <AutoFormElement>
+            <Property name="name">prodCode</Property>
+            <Property name="property">prodCode</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">prodName</Property>
+            <Property name="property">prodName</Property>
+            <Editor/>
+          </AutoFormElement>
+        </AutoForm>
+      </Children>
+    </FieldSet>
+    <ToolBar id="toolSelect">
+      <DataPilot>
+        <Property name="dataSet">dsMain</Property>
+        <Property name="itemCodes">pages,pageSize</Property>
+      </DataPilot>
+      <ToolBarButton id="btnQuery">
+        <Property name="caption">查询</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -40px -100px</Property>
+      </ToolBarButton>
+      <ToolBarButton id="btnReset">
+        <Property name="caption">重置</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -20px -200px</Property>
+      </ToolBarButton>
+      <ToolBarButton id="btnSelect">
+        <Property name="caption">选择</Property>
+        <Property name="icon"> url(>skin>common/icons.gif) -20px -0px</Property>
+      </ToolBarButton>
+    </ToolBar>
+    <DataGrid id="dgMain">
+      <Property name="dataSet">dsMain</Property>
+      <Property name="readOnly">true</Property>
+      <Property name="selectionMode">multiRows</Property>
+      <RowSelectorColumn id="rowSelector"/>
+      <RowNumColumn/>
+      <DataColumn name="prodCode">
+        <Property name="property">prodCode</Property>
+      </DataColumn>
+      <DataColumn name="prodName">
+        <Property name="property">prodName</Property>
+      </DataColumn>
+    </DataGrid>
+  </View>
+</ViewConfig>

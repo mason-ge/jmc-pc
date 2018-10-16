@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewConfig>
+  <Arguments/>
+  <Context/>
+  <Model>
+    <DataType name="dtBase" parent="dtProdBase"/>
+  </Model>
+  <View>
+    <DataSet id="dsBase">
+      <Property name="dataType">dtBase</Property>
+      <Property name="loadMode">manual</Property>
+      <Property name="dataProvider">prodBaseController#getBaseByCode</Property>
+    </DataSet>
+    <ToolBar>
+      <ToolBarButton id="btnSave">
+        <Property name="caption">保存</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -140px -20px</Property>
+      </ToolBarButton>
+      <ToolBarButton id="btnDel">
+        <Property name="caption">删除</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -140px -0px</Property>
+      </ToolBarButton>
+      <ToolBarButton id="btnShow">
+        <Property name="caption">显示详细图片</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -220px -80px</Property>
+      </ToolBarButton>
+      <ToolBarButton id="btnDown">
+        <Property name="caption">模板下载</Property>
+        <Property name="icon"> url(>skin>common/icons.gif) -160px -120px</Property>
+      </ToolBarButton>
+      <ToolBarButton id="btnImp">
+        <Property name="caption">导入</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -0px -240px</Property>
+        <Property name="action">importExcel</Property>
+      </ToolBarButton>
+    </ToolBar>
+    <AutoForm>
+      <Property name="dataSet">dsBase</Property>
+      <Property name="cols">*,*,*,*</Property>
+      <Property name="labelWidth">120</Property>
+      <Property name="rowHeight">30</Property>
+      <AutoFormElement id="prodCodeForm">
+        <Property name="name">prodCode</Property>
+        <Property name="property">prodCode</Property>
+        <Editor/>
+      </AutoFormElement>
+      <AutoFormElement>
+        <Property name="name">prodName</Property>
+        <Property name="property">prodName</Property>
+        <Editor/>
+      </AutoFormElement>
+      <AutoFormElement>
+        <Property name="name">otherProdCode</Property>
+        <Property name="property">otherProdCode</Property>
+        <Editor/>
+      </AutoFormElement>
+      <AutoFormElement>
+        <Property name="name">brand</Property>
+        <Property name="property">brand</Property>
+        <Editor/>
+      </AutoFormElement>
+      <AutoFormElement>
+        <Property name="name">measUnit</Property>
+        <Property name="property">measUnit</Property>
+        <Editor/>
+      </AutoFormElement>
+      <AutoFormElement>
+        <Property name="name">invtyUnit</Property>
+        <Property name="property">invtyUnit</Property>
+        <Editor/>
+      </AutoFormElement>
+      <AutoFormElement>
+        <Property name="name">invtyMgtAttr</Property>
+        <Property name="property">invtyMgtAttr</Property>
+        <Editor/>
+      </AutoFormElement>
+      <AutoFormElement>
+        <Property name="name">supCode</Property>
+        <Property name="property">supCode</Property>
+        <Editor/>
+      </AutoFormElement>
+      <AutoFormElement>
+        <Property name="name">supName</Property>
+        <Property name="property">supName</Property>
+        <Editor/>
+      </AutoFormElement>
+      <AutoFormElement>
+        <Property name="name">prodTheme</Property>
+        <Property name="property">prodTheme</Property>
+        <Editor/>
+      </AutoFormElement>
+      <AutoFormElement>
+        <Property name="name">firstRange</Property>
+        <Property name="property">firstRange</Property>
+        <Editor/>
+      </AutoFormElement>
+      <AutoFormElement>
+        <Property name="name">firstCatg</Property>
+        <Property name="property">firstCatg</Property>
+        <Property name="trigger">dsddFirst</Property>
+        <Editor/>
+      </AutoFormElement>
+      <AutoFormElement>
+        <Property name="name">secCatg</Property>
+        <Property name="property">secCatg</Property>
+        <Property name="trigger">dsddSec</Property>
+        <Editor/>
+      </AutoFormElement>
+      <AutoFormElement>
+        <Property name="name">armType</Property>
+        <Property name="property">armType</Property>
+        <Editor/>
+      </AutoFormElement>
+      <AutoFormElement>
+        <Property name="name">model</Property>
+        <Property name="property">model</Property>
+        <Editor/>
+      </AutoFormElement>
+      <AutoFormElement>
+        <Property name="name">shape</Property>
+        <Property name="property">shape</Property>
+        <Editor/>
+      </AutoFormElement>
+      <AutoFormElement>
+        <Property name="name">mosType</Property>
+        <Property name="property">mosType</Property>
+        <Editor/>
+      </AutoFormElement>
+      <AutoFormElement>
+        <Property name="name">prodCraft</Property>
+        <Property name="property">prodCraft</Property>
+        <Editor/>
+      </AutoFormElement>
+      <AutoFormElement>
+        <Property name="name">surfHandleRem</Property>
+        <Property name="property">surfHandleRem</Property>
+        <Editor/>
+      </AutoFormElement>
+      <AutoFormElement>
+        <Property name="name">otherCraftRem</Property>
+        <Property name="property">otherCraftRem</Property>
+        <Editor/>
+      </AutoFormElement>
+      <AutoFormElement>
+        <Property name="name">cmptRem</Property>
+        <Property name="property">cmptRem</Property>
+        <Editor/>
+      </AutoFormElement>
+      <AutoFormElement>
+        <Property name="name">designRem</Property>
+        <Property name="property">designRem</Property>
+        <Editor/>
+      </AutoFormElement>
+      <AutoFormElement>
+        <Property name="name">attr1</Property>
+        <Property name="property">attr1</Property>
+        <Editor/>
+      </AutoFormElement>
+      <AutoFormElement>
+        <Property name="name">attr2</Property>
+        <Property name="property">attr2</Property>
+        <Editor/>
+      </AutoFormElement>
+      <AutoFormElement>
+        <Property name="name">attr3</Property>
+        <Property name="property">attr3</Property>
+        <Editor/>
+      </AutoFormElement>
+      <AutoFormElement>
+        <Property name="name">attr4</Property>
+        <Property name="property">attr4</Property>
+        <Editor/>
+      </AutoFormElement>
+      <AutoFormElement>
+        <Property name="name">attr5</Property>
+        <Property name="property">attr5</Property>
+        <Editor/>
+      </AutoFormElement>
+      <AutoFormElement>
+        <Property name="name">createdBy</Property>
+        <Property name="property">createdBy</Property>
+        <Property name="readOnly">true</Property>
+        <Editor/>
+      </AutoFormElement>
+      <AutoFormElement>
+        <Property name="name">createdD</Property>
+        <Property name="property">createdD</Property>
+        <Property name="readOnly">true</Property>
+        <Editor/>
+      </AutoFormElement>
+      <AutoFormElement>
+        <Property name="name">updatedBy</Property>
+        <Property name="property">updatedBy</Property>
+        <Property name="readOnly">true</Property>
+        <Editor/>
+      </AutoFormElement>
+      <AutoFormElement>
+        <Property name="name">updatedD</Property>
+        <Property name="property">updatedD</Property>
+        <Property name="readOnly">true</Property>
+        <Editor/>
+      </AutoFormElement>
+    </AutoForm>
+    <AjaxAction id="ajCheckProdCode">
+      <Property name="service">prodBaseController#checkCodeUnique</Property>
+    </AjaxAction>
+    <AjaxAction id="ajGetSupInfo">
+      <Property name="service">goodsInController#getSupInfo</Property>
+    </AjaxAction>
+    <AjaxAction id="ajGetStatus">
+      <Property name="service">prodBaseController#getStatus</Property>
+      <Property name="async">false</Property>
+    </AjaxAction>
+    <UpdateAction id="uaSaveOrUpdate">
+      <Property name="async">false</Property>
+      <Property name="dataResolver">prodBaseController#saveOrUpdate</Property>
+      <UpdateItem>
+        <Property name="dataSet">dsBase</Property>
+        <Property name="alias">entity</Property>
+        <Property name="dataPath">[#current]</Property>
+      </UpdateItem>
+    </UpdateAction>
+    <Import src="com.jmc.scm.system.view.common.ProdImageViewer#_productImageViewer"/>
+    <DataSetDropDown id="dsddFirst">
+      <Property name="dataSet">dsEnumvFirst</Property>
+      <Property name="property">enumvCode</Property>
+      <Property name="displayProperty">enumvName</Property>
+    </DataSetDropDown>
+    <DataSet id="dsEnumvFirst">
+      <Property name="dataType">[dtSysEnumv]</Property>
+      <Property name="dataProvider">enumPR#getEnumvByEnumCode</Property>
+      <Property name="loadMode">manual</Property>
+    </DataSet>
+    <DataSetDropDown id="dsddSec">
+      <Property name="dataSet">dsEnumvSec</Property>
+      <Property name="property">enumvCode</Property>
+      <Property name="displayProperty">enumvName</Property>
+    </DataSetDropDown>
+    <DataSet id="dsEnumvSec">
+      <Property name="dataType">[dtSysEnumv]</Property>
+      <Property name="dataProvider">enumPR#getPlejByEnumvCode</Property>
+      <Property name="loadMode">manual</Property>
+    </DataSet>
+    <ImportExcelAction id="importExcel">
+      <Property name="excelModelId">ProdImport</Property>
+      <Property name="startRow">2</Property>
+    </ImportExcelAction>
+    <AjaxAction id="ajGetImpData">
+      <Property name="service">prodImportProcessor#getTempData</Property>
+    </AjaxAction>
+    <DownloadAction id="downExcel">
+      <Property name="fileProvider">filePR#downloadFile</Property>
+    </DownloadAction>
+  </View>
+</ViewConfig>

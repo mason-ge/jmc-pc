@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewConfig>
+  <Arguments/>
+  <Context/>
+  <Model>
+    <DataType name="dtCondition">
+      <PropertyDef name="model">
+        <Property></Property>
+        <Property name="label">枚举模块</Property>
+        <Property name="mapping">
+          <Property name="mapValues">${dorado.getDataProvider(&quot;enumPR#getEnumvByEnumCode&quot;).getResult(&quot;EnumModel&quot;)}</Property>
+          <Property name="valueProperty">enumvName</Property>
+          <Property name="keyProperty">enumvCode</Property>
+        </Property>
+      </PropertyDef>
+      <PropertyDef name="enumCode">
+        <Property name="label">枚举编码</Property>
+      </PropertyDef>
+      <PropertyDef name="enumName">
+        <Property name="label">枚举名称</Property>
+      </PropertyDef>
+    </DataType>
+    <DataType name="dtMain" parent="dtSysEnum">
+      <Reference name="refEnumv">
+        <Property name="dataType">[dtSysEnumv]</Property>
+        <Property name="parameter">$${this.enumCode}</Property>
+        <Property name="dataProvider">enumPR#getEnumvByEnumCode</Property>
+      </Reference>
+    </DataType>
+  </Model>
+  <View>
+    <FieldSet>
+      <Property name="caption">查询条件</Property>
+      <Buttons/>
+      <Children>
+        <AutoForm>
+          <Property name="dataSet">dsCondition</Property>
+          <Property name="cols">300,300,300</Property>
+          <AutoFormElement>
+            <Property name="name">model</Property>
+            <Property name="property">model</Property>
+            <Property name="trigger">lddModel</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">enumCode</Property>
+            <Property name="property">enumCode</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">enumName</Property>
+            <Property name="property">enumName</Property>
+            <Editor/>
+          </AutoFormElement>
+        </AutoForm>
+      </Children>
+    </FieldSet>
+    <ToolBar>
+      <DataPilot>
+        <Property name="dataSet">dsMain</Property>
+        <Property name="itemCodes">pages,pageSize</Property>
+      </DataPilot>
+      <ToolBarButton id="btnSearch">
+        <Property name="caption">查询</Property>
+        <Property name="width">70</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -40px -100px</Property>
+      </ToolBarButton>
+      <ToolBarButton id="btnAddEnum">
+        <Property name="caption">添加</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -120px -0px</Property>
+        <Property name="width">70</Property>
+      </ToolBarButton>
+      <ToolBarButton id="btnAlterEnum">
+        <Property name="caption">修改</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -200px -0px</Property>
+        <Property name="width">70</Property>
+      </ToolBarButton>
+      <ToolBarButton id="btnDeleteEnum">
+        <Property name="caption">删除</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -140px -0px</Property>
+        <Property name="width">70</Property>
+        <Property name="action">deleteEnumAction</Property>
+      </ToolBarButton>
+    </ToolBar>
+    <DataGrid>
+      <Property name="dataSet">dsMain</Property>
+      <Property name="height">300</Property>
+      <Property name="readOnly">true</Property>
+      <RowNumColumn/>
+      <DataColumn name="model">
+        <Property name="property">model</Property>
+      </DataColumn>
+      <DataColumn name="enumCode">
+        <Property name="property">enumCode</Property>
+      </DataColumn>
+      <DataColumn name="enumName">
+        <Property name="property">enumName</Property>
+      </DataColumn>
+      <DataColumn name="valueFrom">
+        <Property name="property">valueFrom</Property>
+      </DataColumn>
+      <DataColumn name="deletedFlag">
+        <Property name="property">deletedFlag</Property>
+      </DataColumn>
+    </DataGrid>
+    <ToolBar/>
+    <DataGrid>
+      <Property name="dataSet">dsMain</Property>
+      <Property name="dataPath">#.refEnumv</Property>
+      <Property name="readOnly">true</Property>
+      <RowNumColumn/>
+      <DataColumn name="enumvCode">
+        <Property name="property">enumvCode</Property>
+      </DataColumn>
+      <DataColumn name="enumvName">
+        <Property name="property">enumvName</Property>
+      </DataColumn>
+      <DataColumn name="enumvDesc">
+        <Property name="property">enumvDesc</Property>
+      </DataColumn>
+      <DataColumn name="orderNo">
+        <Property name="property">orderNo</Property>
+        <Property name="align">left</Property>
+      </DataColumn>
+      <DataColumn name="deletedFlag">
+        <Property name="property">deletedFlag</Property>
+      </DataColumn>
+    </DataGrid>
+    <Dialog id="dialogDetail">
+      <Property name="width">700</Property>
+      <Property name="height">500</Property>
+      <Property name="caption">枚举明细</Property>
+      <Buttons/>
+      <Children>
+        <AutoForm>
+          <Property name="dataSet">dsMain</Property>
+          <Property name="cols">330,330</Property>
+          <AutoFormElement>
+            <Property name="name">model</Property>
+            <Property name="property">model</Property>
+            <Property name="editable">false</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">valueFrom</Property>
+            <Property name="property">valueFrom</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">enumCode</Property>
+            <Property name="property">enumCode</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">enumName</Property>
+            <Property name="property">enumName</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement layoutConstraint="colSpan:2">
+            <Property name="name">enumDesc</Property>
+            <Property name="property">enumDesc</Property>
+            <Editor/>
+          </AutoFormElement>
+        </AutoForm>
+        <ToolBar>
+          <ToolBarButton id="btnAddEnumv">
+            <Property name="caption">添加</Property>
+            <Property name="icon">url(>skin>common/icons.gif) -120px -0px</Property>
+            <Property name="width">70</Property>
+          </ToolBarButton>
+          <ToolBarButton id="btnSaveEnumv">
+            <Property name="caption">保存</Property>
+            <Property name="width">70</Property>
+            <Property name="icon">url(>skin>common/icons.gif) -140px -20px</Property>
+            <Property name="action">updateAction</Property>
+          </ToolBarButton>
+          <ToolBarButton id="btnDeleteEnumv">
+            <Property name="caption">删除</Property>
+            <Property name="icon">url(>skin>common/icons.gif) -140px -0px</Property>
+            <Property name="width">70</Property>
+            <Property name="action">deleteEnumvAction</Property>
+          </ToolBarButton>
+        </ToolBar>
+        <DataGrid id="dgDetailEnumv">
+          <Property name="dataSet">dsMain</Property>
+          <Property name="dataPath">#.refEnumv</Property>
+          <Property name="selectionMode">multiRows</Property>
+          <RowNumColumn/>
+          <RowSelectorColumn/>
+          <DataColumn name="enumvCode">
+            <Property name="property">enumvCode</Property>
+          </DataColumn>
+          <DataColumn name="enumvName">
+            <Property name="property">enumvName</Property>
+          </DataColumn>
+          <DataColumn name="enumvDesc">
+            <Property name="property">enumvDesc</Property>
+          </DataColumn>
+          <DataColumn name="orderNo">
+            <Property name="property">orderNo</Property>
+          </DataColumn>
+          <DataColumn name="deletedFlag">
+            <Property name="property">deletedFlag</Property>
+          </DataColumn>
+        </DataGrid>
+      </Children>
+      <Tools/>
+    </Dialog>
+    <DataSet id="dsCondition">
+      <Property name="dataType">dtCondition</Property>
+    </DataSet>
+    <DataSet id="dsMain">
+      <Property name="dataType">[dtMain]</Property>
+      <Property name="dataProvider">enumPR#getPageEnum</Property>
+      <Property name="pageSize">10</Property>
+    </DataSet>
+    <ListDropDown id="lddModel">
+      <Property name="property">enumvCode</Property>
+      <Property name="displayProperty">enumvName</Property>
+      <Property name="items">${dorado.getDataProvider(&quot;enumPR#getEnumvByEnumCode&quot;).getResult(&quot;EnumModel&quot;)}</Property>
+    </ListDropDown>
+    <UpdateAction id="updateAction">
+      <Property name="dataResolver">enumPR#updateEnums</Property>
+      <Property name="confirmMessage">确认保存枚举？</Property>
+      <Property name="successMessage">保存成功！</Property>
+      <UpdateItem>
+        <Property name="dataPath">[#current]</Property>
+        <Property name="alias">enum_</Property>
+        <Property name="dataSet">dsMain</Property>
+      </UpdateItem>
+      <UpdateItem>
+        <Property name="dataSet">dsMain</Property>
+        <Property name="alias">enumvs</Property>
+        <Property name="dataPath">#.refEnumv</Property>
+      </UpdateItem>
+    </UpdateAction>
+    <UpdateAction id="deleteEnumvAction">
+      <Property name="dataResolver">enumPR#deleteEnumvs</Property>
+      <Property name="confirmMessage">确认删除选中枚举值？</Property>
+      <Property name="successMessage">删除成功！</Property>
+      <UpdateItem>
+        <Property name="alias">enumvs</Property>
+        <Property name="dataPath">#.refEnumv</Property>
+        <Property name="dataSet">dsMain</Property>
+      </UpdateItem>
+    </UpdateAction>
+    <UpdateAction id="deleteEnumAction">
+      <Property name="dataResolver">enumPR#deleteEnum</Property>
+      <Property name="confirmMessage">确认删除选中枚举？</Property>
+      <Property name="successMessage">删除成功！</Property>
+      <UpdateItem>
+        <Property name="dataPath">[#current]</Property>
+        <Property name="alias">enum_</Property>
+        <Property name="dataSet">dsMain</Property>
+      </UpdateItem>
+      <UpdateItem>
+        <Property name="dataSet">dsMain</Property>
+        <Property name="alias">enumvs</Property>
+        <Property name="dataPath">#.refEnumv</Property>
+      </UpdateItem>
+    </UpdateAction>
+  </View>
+</ViewConfig>

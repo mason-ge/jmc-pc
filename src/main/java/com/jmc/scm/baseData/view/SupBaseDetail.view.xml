@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewConfig>
+  <Arguments/>
+  <Context/>
+  <Model>
+    <DataType name="dtBase" parent="dtSupplierBaseInfo"/>
+    <DataType name="dtItem" parent="dtSupplierBankInfo"/>
+  </Model>
+  <View>
+    <DataSet id="dsBase">
+      <Property name="dataType">dtBase</Property>
+      <Property name="loadMode">manual</Property>
+      <Property name="dataProvider">supBaseController#getBaseByCode</Property>
+    </DataSet>
+    <DataSet id="dsItem">
+      <Property name="dataType">[dtItem]</Property>
+      <Property name="loadMode">manual</Property>
+      <Property name="dataProvider">supBaseController#getBankByCode</Property>
+    </DataSet>
+    <ToolBar>
+      <ToolBarButton id="btnSave">
+        <Property name="caption">保存</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -140px -20px</Property>
+      </ToolBarButton>
+      <ToolBarButton id="btnDel">
+        <Property name="caption">删除</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -140px -0px</Property>
+      </ToolBarButton>
+    </ToolBar>
+    <GroupBox>
+      <Property name="caption">基本信息</Property>
+      <Buttons/>
+      <Children>
+        <AutoForm>
+          <Property name="dataSet">dsBase</Property>
+          <Property name="cols">*,*,*,*</Property>
+          <Property name="labelWidth">100</Property>
+          <AutoFormElement id="supCodeForm">
+            <Property name="name">supCode</Property>
+            <Property name="property">supCode</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">supName</Property>
+            <Property name="property">supName</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">supGrp</Property>
+            <Property name="property">supGrp</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">shortName</Property>
+            <Property name="property">shortName</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">taxCode</Property>
+            <Property name="property">taxCode</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">adr1</Property>
+            <Property name="property">adr1</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement layoutConstraint="colSpan:2">
+            <Property name="name">adr2</Property>
+            <Property name="property">adr2</Property>
+            <Property name="width">49.5%</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">conName1</Property>
+            <Property name="property">conName1</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">conPhone1</Property>
+            <Property name="property">conPhone1</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">conMobile1</Property>
+            <Property name="property">conMobile1</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">conEmail1</Property>
+            <Property name="property">conEmail1</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">conName2</Property>
+            <Property name="property">conName2</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">conPhone2</Property>
+            <Property name="property">conPhone2</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">conMobile2</Property>
+            <Property name="property">conMobile2</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">conEmail2</Property>
+            <Property name="property">conEmail2</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">tel</Property>
+            <Property name="property">tel</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">fax</Property>
+            <Property name="property">fax</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">email</Property>
+            <Property name="property">email</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">cmpyWeb</Property>
+            <Property name="property">cmpyWeb</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">qq</Property>
+            <Property name="property">qq</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">wechat</Property>
+            <Property name="property">wechat</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">scale</Property>
+            <Property name="property">scale</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">capacity</Property>
+            <Property name="property">capacity</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">goodAtField1</Property>
+            <Property name="property">goodAtField1</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">supLvl</Property>
+            <Property name="property">supLvl</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">payment</Property>
+            <Property name="property">payment</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement layoutConstraint="colSpan:4">
+            <Property name="name">remark</Property>
+            <Property name="property">remark</Property>
+            <Editor>
+              <TextArea>
+                <Property name="property">remark</Property>
+                <Property name="blankText">此处输入备注......</Property>
+                <Property name="height">40</Property>
+              </TextArea>
+            </Editor>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">createdBy</Property>
+            <Property name="property">createdBy</Property>
+            <Property name="readOnly">true</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">createdD</Property>
+            <Property name="property">createdD</Property>
+            <Property name="readOnly">true</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">updatedBy</Property>
+            <Property name="property">updatedBy</Property>
+            <Property name="readOnly">true</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">updatedD</Property>
+            <Property name="property">updatedD</Property>
+            <Property name="readOnly">true</Property>
+            <Editor/>
+          </AutoFormElement>
+        </AutoForm>
+      </Children>
+    </GroupBox>
+    <GroupBox>
+      <Property name="caption">银行信息</Property>
+      <Buttons/>
+      <Children>
+        <ToolBar>
+          <ToolBarButton id="btnAddLine">
+            <Property name="caption">新增行</Property>
+            <Property name="icon">url(>skin>common/icons.gif) -120px -0px</Property>
+          </ToolBarButton>
+          <ToolBarButton id="btnRmvLine">
+            <Property name="caption">删除行</Property>
+            <Property name="icon">url(>skin>common/icons.gif) -140px -0px</Property>
+          </ToolBarButton>
+        </ToolBar>
+        <DataGrid id="dgItem">
+          <Property name="dataSet">dsItem</Property>
+          <Property name="width">50%</Property>
+          <RowNumColumn/>
+          <DataColumn name="bankCntry">
+            <Property name="property">bankCntry</Property>
+          </DataColumn>
+          <DataColumn name="bankName">
+            <Property name="property">bankName</Property>
+          </DataColumn>
+          <DataColumn name="bankAcct">
+            <Property name="property">bankAcct</Property>
+          </DataColumn>
+          <DataColumn name="bankAcctName">
+            <Property name="property">bankAcctName</Property>
+          </DataColumn>
+        </DataGrid>
+      </Children>
+    </GroupBox>
+    <AjaxAction id="ajCheckSupCode">
+      <Property name="service">supBaseController#checkSupCodeUnique</Property>
+    </AjaxAction>
+    <AjaxAction id="ajGetStatus">
+      <Property name="service">supBaseController#getStatus</Property>
+      <Property name="async">false</Property>
+    </AjaxAction>
+    <UpdateAction id="uaSaveOrUpdate">
+      <Property name="async">false</Property>
+      <Property name="dataResolver">supBaseController#saveOrUpdate</Property>
+      <UpdateItem>
+        <Property name="dataSet">dsBase</Property>
+        <Property name="alias">entity</Property>
+        <Property name="dataPath">[#current]</Property>
+      </UpdateItem>
+      <UpdateItem>
+        <Property name="dataSet">dsItem</Property>
+        <Property name="dataPath">[#all]</Property>
+        <Property name="alias">list</Property>
+      </UpdateItem>
+    </UpdateAction>
+  </View>
+</ViewConfig>

@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewConfig>
+  <Arguments/>
+  <Context/>
+  <Model>
+    <DataType name="dtCondition">
+      <PropertyDef name="prodCode">
+        <Property name="label">商品编码</Property>
+      </PropertyDef>
+      <PropertyDef name="prodName">
+        <Property name="label">商品名称</Property>
+      </PropertyDef>
+    </DataType>
+    <DataType name="dtMain" parent="dtProdBase">
+      <PropertyDef name="img"/>
+    </DataType>
+    <DataType name="dtShop" parent="dtProdShop"/>
+    <DataType name="dtTree" parent="dtSysEnumv">
+      <Reference name="underlings">
+        <Property name="dataType">[SELF]</Property>
+        <Property name="parameter">$${this.enumvCode}</Property>
+        <Property name="dataProvider">enumPR#getPlejByEnumvCode</Property>
+      </Reference>
+    </DataType>
+  </Model>
+  <View>
+    <DataSet id="dsCondition">
+      <Property name="dataType">dtCondition</Property>
+    </DataSet>
+    <DataSet id="dsMain">
+      <Property name="dataType">[dtMain]</Property>
+      <Property name="pageSize">10</Property>
+      <Property name="parameter"></Property>
+      <Property name="dataProvider">prodBaseController#getBaseListPage</Property>
+      <Property name="loadMode">manual</Property>
+    </DataSet>
+    <DataSet id="dsTree">
+      <Property name="dataType">[dtTree]</Property>
+      <Property name="loadMode">manual</Property>
+      <Property name="dataProvider">enumPR#getEnumvByEnumCode</Property>
+    </DataSet>
+    <DataSet id="dsShop">
+      <Property name="dataType">dtShop</Property>
+      <Property name="loadMode">manual</Property>
+    </DataSet>
+    <SplitPanel>
+      <Property name="direction">left</Property>
+      <Property name="position">200</Property>
+      <MainControl>
+        <Container>
+          <FieldSet>
+            <Property name="caption">查询条件</Property>
+            <Buttons/>
+            <Children>
+              <AutoForm>
+                <Property name="dataSet">dsCondition</Property>
+                <Property name="cols">300,300</Property>
+                <AutoFormElement>
+                  <Property name="name">prodCode</Property>
+                  <Property name="property">prodCode</Property>
+                  <Editor/>
+                </AutoFormElement>
+                <AutoFormElement>
+                  <Property name="name">prodName</Property>
+                  <Property name="property">prodName</Property>
+                  <Editor/>
+                </AutoFormElement>
+              </AutoForm>
+            </Children>
+          </FieldSet>
+          <ToolBar>
+            <DataPilot id="pilot">
+              <Property name="itemCodes">pages,pageSize</Property>
+              <Property name="dataSet">dsMain</Property>
+            </DataPilot>
+            <ToolBarButton id="btnSearch">
+              <Property name="caption">查询</Property>
+              <Property name="width">70</Property>
+              <Property name="icon">url(>skin>common/icons.gif) -40px -100px</Property>
+              <Property name="disabled">true</Property>
+            </ToolBarButton>
+            <ToolBarButton id="btnReset">
+              <Property name="caption">重置</Property>
+              <Property name="icon">url(>skin>common/icons.gif) -20px -200px</Property>
+              <Property name="width">70</Property>
+            </ToolBarButton>
+            <ToolBarButton id="btnCreate">
+              <Property name="caption">创建</Property>
+              <Property name="icon">url(>skin>common/icons.gif) -120px -0px</Property>
+              <Property name="width">70</Property>
+            </ToolBarButton>
+            <ToolBarButton id="btnMod">
+              <Property name="caption">修改</Property>
+              <Property name="icon">url(>skin>common/icons.gif) -200px -0px</Property>
+              <Property name="width">70</Property>
+            </ToolBarButton>
+            <ToolBarButton id="btnShop">
+              <Property name="caption">加入购物车</Property>
+              <Property name="icon"> url(>skin>common/icons.gif) -220px -40px</Property>
+            </ToolBarButton>
+            <ToolBarButton id="btnSettle">
+              <Property name="caption">结算</Property>
+              <Property name="icon"> url(>skin>common/icons.gif) -20px -80px</Property>
+            </ToolBarButton>
+            <ToolBarButton id="btnWatch">
+              <Property name="caption">查看</Property>
+              <Property name="icon">url(>skin>common/icons.gif) -220px -80px</Property>
+              <Property name="width">70</Property>
+            </ToolBarButton>
+            <ToolBarButton id="btnShow">
+              <Property name="caption">显示详细图片</Property>
+              <Property name="icon"> url(>skin>common/icons.gif) -40px -60px</Property>
+            </ToolBarButton>
+          </ToolBar>
+          <DataBlockView id="dbvMain">
+            <Property name="dataSet">dsMain</Property>
+            <Property name="blockHeight">200</Property>
+            <Property name="blockWidth">200</Property>
+            <Property name="lineSize">5</Property>
+          </DataBlockView>
+        </Container>
+      </MainControl>
+      <SideControl>
+        <Container>
+          <DataTree id="tree">
+            <Property name="dataSet">dsTree</Property>
+            <BindingConfigs>
+              <BindingConfig>
+                <Property name="labelProperty">enumvName</Property>
+                <Property name="recursive">true</Property>
+                <Property name="childrenProperty">underlings</Property>
+                <Property name="expandLevel">1</Property>
+              </BindingConfig>
+            </BindingConfigs>
+          </DataTree>
+        </Container>
+      </SideControl>
+    </SplitPanel>
+    <Dialog id="dlgShop">
+      <Property name="width">30%</Property>
+      <Property name="height">40%</Property>
+      <Property name="caption">购物车</Property>
+      <Buttons>
+        <Button id="btnSure">
+          <Property name="caption">确定</Property>
+          <Property name="icon">url(>skin>common/icons.gif) -20px -0px</Property>
+        </Button>
+        <Button id="btnCancel">
+          <Property name="caption">取消</Property>
+          <Property name="icon">url(>skin>common/icons.gif) -40px -0px</Property>
+        </Button>
+      </Buttons>
+      <Children>
+        <AutoForm>
+          <Property name="dataSet">dsShop</Property>
+          <Property name="cols">*</Property>
+          <Property name="labelWidth">120</Property>
+          <AutoFormElement>
+            <Property name="name">inlaiedScoop</Property>
+            <Property name="property">inlaiedScoop</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">size</Property>
+            <Property name="property">size</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">nums</Property>
+            <Property name="property">nums</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">goldColor</Property>
+            <Property name="property">goldColor</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">remark</Property>
+            <Property name="property">remark</Property>
+            <Editor/>
+          </AutoFormElement>
+        </AutoForm>
+      </Children>
+      <Tools/>
+    </Dialog>
+    <Import src="com.jmc.scm.system.view.common.ProdImageViewer#_productImageViewer"/>
+    <AjaxAction id="ajGetShopNum">
+      <Property name="service">prodBaseController#getShopNum</Property>
+    </AjaxAction>
+    <UpdateAction id="uaSaveShop">
+      <Property name="successMessage">保存成功！</Property>
+      <Property name="dataResolver">prodBaseController#saveShop</Property>
+      <UpdateItem>
+        <Property name="dataSet">dsShop</Property>
+        <Property name="dataPath">[#current]</Property>
+        <Property name="alias">entity</Property>
+      </UpdateItem>
+    </UpdateAction>
+    <AjaxAction id="ajGetProdImg">
+      <Property name="service">prodBaseController#getProdImgList</Property>
+    </AjaxAction>
+  </View>
+</ViewConfig>

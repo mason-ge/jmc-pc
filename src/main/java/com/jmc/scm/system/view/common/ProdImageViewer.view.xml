@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewConfig>
+  <Arguments/>
+  <Context/>
+  <Model/>
+  <View>
+    <Button>
+      <ClientEvent name="onClick">view.set('#_dsImageViewer.parameter', 'AD2343');&#xD;
+view.id('_dialogImageViewer').show();&#xD;
+</ClientEvent>
+      <Property name="caption">调试1</Property>
+    </Button>
+    <GroupStart id="_productImageViewer"/>
+    <Dialog id="_dialogImageViewer">
+      <Property name="width">400</Property>
+      <Property name="height">430</Property>
+      <Buttons/>
+      <Children>
+        <Container>
+          <ImageSlider id="imageSlider">
+            <Property name="height">260</Property>
+            <Property name="width">400</Property>
+            <Property name="indicatorPosition">none</Property>
+            <Property name="dataSet">_dsImageViewer</Property>
+            <Image>
+              <Property name="image">{fileHttpPath}</Property>
+            </Image>
+          </ImageSlider>
+          <ImageCarousel id="imageCarousel" layoutConstraint="bottom">
+            <ClientEvent name="onCurrentChange">var imageSlider = view.id(&quot;imageSlider&quot;);&#xD;
+imageSlider.set(&quot;currentItem&quot;,self.get(&quot;currentIndex&quot;));&#xD;
+</ClientEvent>
+            <ClientEvent name="onReady">self.addListener('onItemsChange',function(self,arg){&#xD;
+    self.set('currentItem',self.getItem(0));&#xD;
+});&#xD;
+</ClientEvent>
+            <Property name="dataSet">_dsImageViewer</Property>
+            <Property name="height">70</Property>
+            <Property name="itemSize">70</Property>
+            <Property name="changeCurrentOnHover">true</Property>
+            <Thumbnail>
+              <Property name="captionPosition">inside</Property>
+              <Property name="image">{fileHttpPath}</Property>
+            </Thumbnail>
+          </ImageCarousel>
+        </Container>
+      </Children>
+      <Tools/>
+    </Dialog>
+    <DataSet id="_dsImageViewer">
+      <Property name="dataType">[dtSysFile]</Property>
+      <Property name="dataProvider">filePR#getListProdImage</Property>
+      <Property name="loadMode">manual</Property>
+    </DataSet>
+    <GroupEnd/>
+  </View>
+</ViewConfig>

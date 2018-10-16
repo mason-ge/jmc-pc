@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Model>
+  <DataType name="dtSysEnum">
+    <Property name="creationType">com.jmc.scm.system.model.SysEnum</Property>
+    <PropertyDef name="enumId">
+      <Property></Property>
+      <Property name="label">主键</Property>
+    </PropertyDef>
+    <PropertyDef name="enumCode">
+      <Property></Property>
+      <Property name="label">枚举编码</Property>
+    </PropertyDef>
+    <PropertyDef name="enumName">
+      <Property></Property>
+      <Property name="label">枚举名称</Property>
+    </PropertyDef>
+    <PropertyDef name="enumDesc">
+      <Property></Property>
+      <Property name="label">枚举描述</Property>
+    </PropertyDef>
+    <PropertyDef name="enumType">
+      <Property></Property>
+      <Property name="label">枚举类型</Property>
+    </PropertyDef>
+    <PropertyDef name="model">
+      <Property></Property>
+      <Property name="label">枚举模块</Property>
+      <Property name="mapping">
+        <Property name="keyProperty">enumvCode</Property>
+        <Property name="valueProperty">enumvName</Property>
+        <Property name="mapValues">${dorado.getDataProvider(&quot;enumPR#getEnumvByEnumCode&quot;).getResult(&quot;EnumModel&quot;)}</Property>
+      </Property>
+    </PropertyDef>
+    <PropertyDef name="syncDate">
+      <Property name="dataType">Date</Property>
+      <Property name="label">同步时间</Property>
+    </PropertyDef>
+    <PropertyDef name="syncFlag">
+      <Property></Property>
+      <Property name="label">同步标记</Property>
+    </PropertyDef>
+    <PropertyDef name="valueFrom">
+      <Property></Property>
+      <Property name="label">数据来源</Property>
+    </PropertyDef>
+    <PropertyDef name="version">
+      <Property name="dataType">int</Property>
+      <Property name="label">版本</Property>
+    </PropertyDef>
+    <PropertyDef name="attribute1">
+      <Property></Property>
+      <Property name="label">扩展字段1</Property>
+    </PropertyDef>
+    <PropertyDef name="attribute2">
+      <Property></Property>
+      <Property name="label">扩展字段2</Property>
+    </PropertyDef>
+    <PropertyDef name="attribute3">
+      <Property></Property>
+      <Property name="label">扩展字段3</Property>
+    </PropertyDef>
+    <PropertyDef name="attribute4">
+      <Property></Property>
+      <Property name="label">扩展字段4</Property>
+    </PropertyDef>
+    <PropertyDef name="attribute5">
+      <Property></Property>
+      <Property name="label">扩展字段5</Property>
+    </PropertyDef>
+    <PropertyDef name="deletedFlag">
+      <Property name="dataType">int</Property>
+      <Property name="label">删除标记</Property>
+      <Property name="mapping">
+        <Property name="mapValues">${dorado.getDataProvider(&quot;enumPR#getEnumvByEnumCode&quot;).getResult(&quot;DeletedFlag&quot;)}</Property>
+        <Property name="keyProperty">enumvCode</Property>
+        <Property name="valueProperty">enumvName</Property>
+      </Property>
+    </PropertyDef>
+    <PropertyDef name="createdBy">
+      <Property></Property>
+      <Property name="label">创建人</Property>
+    </PropertyDef>
+    <PropertyDef name="createdDate">
+      <Property name="dataType">Date</Property>
+      <Property name="label">创建时间</Property>
+    </PropertyDef>
+    <PropertyDef name="updatedBy">
+      <Property></Property>
+      <Property name="label">更新人</Property>
+    </PropertyDef>
+    <PropertyDef name="updatedDate">
+      <Property name="dataType">Date</Property>
+      <Property name="label">更新时间</Property>
+    </PropertyDef>
+  </DataType>
+  <DataType name="dtSysEnumv">
+    <Property name="creationType">com.jmc.scm.system.model.SysEnumv</Property>
+    <PropertyDef name="enumvId">
+      <Property></Property>
+      <Property name="label">枚举值主键</Property>
+    </PropertyDef>
+    <PropertyDef name="enumId">
+      <Property></Property>
+      <Property name="label">枚举主键</Property>
+    </PropertyDef>
+    <PropertyDef name="enumvCode">
+      <Property></Property>
+      <Property name="label">枚举值编码</Property>
+    </PropertyDef>
+    <PropertyDef name="enumvName">
+      <Property></Property>
+      <Property name="label">枚举值名称</Property>
+    </PropertyDef>
+    <PropertyDef name="enumvDesc">
+      <Property></Property>
+      <Property name="label">枚举值描述</Property>
+    </PropertyDef>
+    <PropertyDef name="orderNo">
+      <Property name="dataType">int</Property>
+      <Property name="label">顺序号</Property>
+    </PropertyDef>
+    <PropertyDef name="parentEnumvId">
+      <Property></Property>
+      <Property name="label">父枚举主键</Property>
+    </PropertyDef>
+    <PropertyDef name="version">
+      <Property name="dataType">int</Property>
+      <Property name="label">版本</Property>
+    </PropertyDef>
+    <PropertyDef name="attribute1">
+      <Property></Property>
+      <Property name="label">扩展字段1</Property>
+    </PropertyDef>
+    <PropertyDef name="attribute2">
+      <Property></Property>
+      <Property name="label">扩展字段2</Property>
+    </PropertyDef>
+    <PropertyDef name="attribute3">
+      <Property></Property>
+      <Property name="label">扩展字段3</Property>
+    </PropertyDef>
+    <PropertyDef name="attribute4">
+      <Property></Property>
+      <Property name="label">扩展字段4</Property>
+    </PropertyDef>
+    <PropertyDef name="attribute5">
+      <Property></Property>
+      <Property name="label">扩展字段5</Property>
+    </PropertyDef>
+    <PropertyDef name="deletedFlag">
+      <Property name="dataType">int</Property>
+      <Property name="label">删除标记</Property>
+      <Property name="mapping">
+        <Property name="keyProperty">enumvCode</Property>
+        <Property name="valueProperty">enumvName</Property>
+        <Property name="mapValues">${dorado.getDataProvider(&quot;enumPR#getEnumvByEnumCode&quot;).getResult(&quot;DeletedFlag&quot;)}</Property>
+      </Property>
+    </PropertyDef>
+    <PropertyDef name="createdBy">
+      <Property></Property>
+      <Property name="label">创建人</Property>
+    </PropertyDef>
+    <PropertyDef name="createdDate">
+      <Property name="dataType">Date</Property>
+      <Property name="label">创建时间</Property>
+    </PropertyDef>
+    <PropertyDef name="updatedBy">
+      <Property></Property>
+      <Property name="label">更新人</Property>
+    </PropertyDef>
+    <PropertyDef name="updatedDate">
+      <Property name="dataType">Date</Property>
+      <Property name="label">更新时间</Property>
+    </PropertyDef>
+  </DataType>
+  <DataType name="dtSysFile">
+    <Property name="creationType">com.jmc.scm.system.model.SysFile</Property>
+    <PropertyDef name="pkId">
+      <Property></Property>
+      <Property name="label">主键</Property>
+    </PropertyDef>
+    <PropertyDef name="bizCode">
+      <Property></Property>
+      <Property name="label">业务主键</Property>
+    </PropertyDef>
+    <PropertyDef name="fileName">
+      <Property></Property>
+      <Property name="label">文件名</Property>
+    </PropertyDef>
+    <PropertyDef name="fileHttpPath">
+      <Property></Property>
+      <Property name="label">文件HTTP获取路径</Property>
+    </PropertyDef>
+    <PropertyDef name="fileAbsolutePath">
+      <Property></Property>
+      <Property name="label">文件绝对路径</Property>
+    </PropertyDef>
+    <PropertyDef name="attr1">
+      <Property></Property>
+      <Property name="label">扩展字段1</Property>
+    </PropertyDef>
+    <PropertyDef name="attr2">
+      <Property></Property>
+      <Property name="label">扩展字段2</Property>
+    </PropertyDef>
+    <PropertyDef name="attr3">
+      <Property></Property>
+      <Property name="label">扩展字段3</Property>
+    </PropertyDef>
+    <PropertyDef name="attr4">
+      <Property></Property>
+      <Property name="label">扩展字段4</Property>
+    </PropertyDef>
+    <PropertyDef name="attr5">
+      <Property></Property>
+      <Property name="label">扩展字段5</Property>
+    </PropertyDef>
+    <PropertyDef name="delFlg">
+      <Property></Property>
+      <Property name="label">删除标记</Property>
+    </PropertyDef>
+    <PropertyDef name="createdBy">
+      <Property></Property>
+      <Property name="label">创建人</Property>
+    </PropertyDef>
+    <PropertyDef name="createdD">
+      <Property name="dataType">Date</Property>
+      <Property name="label">创建时间</Property>
+    </PropertyDef>
+    <PropertyDef name="updatedBy">
+      <Property></Property>
+      <Property name="label">更新人</Property>
+    </PropertyDef>
+    <PropertyDef name="updatedD">
+      <Property name="dataType">Date</Property>
+      <Property name="label">更新时间</Property>
+    </PropertyDef>
+  </DataType>
+  <DataType name="dtClientCfg">
+    <Property name="creationType">com.jmc.scm.system.model.ClientCfg</Property>
+    <PropertyDef name="client">
+      <Property/>
+      <Property name="label">客户端号</Property>
+    </PropertyDef>
+    <PropertyDef name="ftpUser">
+      <Property/>
+      <Property name="label">FTP登录名</Property>
+    </PropertyDef>
+    <PropertyDef name="ftpPsw">
+      <Property/>
+      <Property name="label">FTP登录密码</Property>
+    </PropertyDef>
+  </DataType>
+</Model>

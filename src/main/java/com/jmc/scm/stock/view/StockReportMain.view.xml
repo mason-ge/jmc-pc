@@ -1,0 +1,767 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewConfig>
+  <Arguments/>
+  <Context/>
+  <Model>
+    <DataType name="dtCondition">
+      <PropertyDef name="stockLocale">
+        <Property></Property>
+        <Property name="label">库存地点</Property>
+        <Property name="mapping">
+          <Property name="keyProperty">enumvCode</Property>
+          <Property name="mapValues">${dorado.getDataProvider(&quot;enumPR#getEnumvByEnumCode&quot;).getResult(&quot;LOCATION&quot;)}</Property>
+          <Property name="valueProperty">enumvName</Property>
+        </Property>
+      </PropertyDef>
+      <PropertyDef name="prodCode">
+        <Property></Property>
+        <Property name="label">商品编码</Property>
+      </PropertyDef>
+      <PropertyDef name="prodName">
+        <Property name="label">商品名称</Property>
+      </PropertyDef>
+      <PropertyDef name="batchCode">
+        <Property></Property>
+        <Property name="label">货号</Property>
+      </PropertyDef>
+      <PropertyDef name="spName">
+        <Property></Property>
+        <Property name="label">单品名称</Property>
+      </PropertyDef>
+      <PropertyDef name="loan">
+        <Property name="label">借货</Property>
+        <Property name="mapping">
+          <Property name="mapValues">${dorado.getDataProvider(&quot;enumPR#getEnumvByEnumCode&quot;).getResult(&quot;LOAN&quot;)}</Property>
+          <Property name="keyProperty">enumvCode</Property>
+          <Property name="valueProperty">enumvName</Property>
+        </Property>
+      </PropertyDef>
+      <PropertyDef name="allStock">
+        <Property name="dataType">boolean</Property>
+        <Property name="label">全部库存</Property>
+      </PropertyDef>
+    </DataType>
+    <DataType name="dtMain" parent="dtPropUniInfo">
+      <PropertyDef name="stockLocale">
+        <Property></Property>
+        <Property name="label">库存地点</Property>
+      </PropertyDef>
+      <PropertyDef name="prodName">
+        <Property name="label">商品名称</Property>
+      </PropertyDef>
+    </DataType>
+  </Model>
+  <View>
+    <DataSet id="dsCondition">
+      <Property name="dataType">dtCondition</Property>
+    </DataSet>
+    <DataSet id="dsMain">
+      <Property name="dataType">[dtMain]</Property>
+      <Property name="loadMode">manual</Property>
+      <Property name="pageSize">50</Property>
+      <Property name="dataProvider">stockController#getBaseListPage</Property>
+    </DataSet>
+    <FieldSet>
+      <Property name="caption">查询条件</Property>
+      <Buttons/>
+      <Children>
+        <AutoForm>
+          <Property name="dataSet">dsCondition</Property>
+          <Property name="cols">*,*,*,*</Property>
+          <Property name="labelWidth">100</Property>
+          <AutoFormElement>
+            <Property name="name">stockLocale</Property>
+            <Property name="property">stockLocale</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">prodCode</Property>
+            <Property name="property">prodCode</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">prodName</Property>
+            <Property name="property">prodName</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">batchCode</Property>
+            <Property name="property">batchCode</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">spName</Property>
+            <Property name="property">spName</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">loan</Property>
+            <Property name="property">loan</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">allStock</Property>
+            <Property name="property">allStock</Property>
+            <Property name="showHint">false</Property>
+            <Editor/>
+          </AutoFormElement>
+        </AutoForm>
+      </Children>
+    </FieldSet>
+    <ToolBar>
+      <DataPilot>
+        <Property name="itemCodes">pages,pageSize</Property>
+        <Property name="dataSet">dsMain</Property>
+      </DataPilot>
+      <ToolBarButton id="btnQuery">
+        <Property name="caption">查询</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -40px -100px</Property>
+        <Property name="width">70</Property>
+      </ToolBarButton>
+      <ToolBarButton id="btnReset">
+        <Property name="caption">重置</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -20px -200px</Property>
+        <Property name="width">70</Property>
+      </ToolBarButton>
+      <ToolBarButton id="btnMod">
+        <Property name="caption">修改</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -200px -0px</Property>
+      </ToolBarButton>
+      <ToolBarButton id="btnExport">
+        <Property name="caption">导出</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -20px -240px</Property>
+        <Property name="action">export2ReportAction1</Property>
+      </ToolBarButton>
+      <ToolBarButton id="btnPrint">
+        <Property name="caption">重打条码</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -120px -20px</Property>
+      </ToolBarButton>
+    </ToolBar>
+    <DataGrid id="dgMain">
+      <Property name="dataSet">dsMain</Property>
+      <Property name="readOnly">true</Property>
+      <Property name="stretchColumnsMode">off</Property>
+      <RowNumColumn>
+        <Property name="width">40</Property>
+      </RowNumColumn>
+      <DataColumn name="stockLocale">
+        <Property name="property">stockLocale</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="batchCode">
+        <Property name="property">batchCode</Property>
+        <Property name="align">center</Property>
+        <Property name="width">120</Property>
+      </DataColumn>
+      <DataColumn name="spName">
+        <Property name="property">spName</Property>
+        <Property name="align">left</Property>
+        <Property name="width">150</Property>
+      </DataColumn>
+      <DataColumn name="prodCode">
+        <Property name="property">prodCode</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="prodName">
+        <Property name="property">prodName</Property>
+        <Property name="align">left</Property>
+        <Property name="width">150</Property>
+      </DataColumn>
+      <DataColumn name="isEmptyBracket">
+        <Property name="property">isEmptyBracket</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="mosType">
+        <Property name="property">mosType</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="firstCatg">
+        <Property name="property">firstCatg</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="secCatg">
+        <Property name="property">secCatg</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="facProdCode">
+        <Property name="property">facProdCode</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="retPrice">
+        <Property name="property">retPrice</Property>
+        <Property name="align">right</Property>
+      </DataColumn>
+      <DataColumn name="goldType">
+        <Property name="property">goldType</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="goldColor">
+        <Property name="property">goldColor</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="material">
+        <Property name="property">material</Property>
+        <Property name="align">right</Property>
+      </DataColumn>
+      <DataColumn name="clarityGWt">
+        <Property name="property">clarityGWt</Property>
+        <Property name="align">right</Property>
+      </DataColumn>
+      <DataColumn name="weight">
+        <Property name="property">weight</Property>
+        <Property name="align">right</Property>
+      </DataColumn>
+      <DataColumn name="size">
+        <Property name="property">size</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="goldWastage">
+        <Property name="property">goldWastage</Property>
+        <Property name="align">right</Property>
+      </DataColumn>
+      <DataColumn name="inclWastageGWt">
+        <Property name="property">inclWastageGWt</Property>
+        <Property name="align">right</Property>
+      </DataColumn>
+      <DataColumn name="goldPx">
+        <Property name="property">goldPx</Property>
+        <Property name="align">right</Property>
+      </DataColumn>
+      <DataColumn name="facGPx">
+        <Property name="property">facGPx</Property>
+        <Property name="align">right</Property>
+      </DataColumn>
+      <DataColumn name="cmpyGPx">
+        <Property name="property">cmpyGPx</Property>
+        <Property name="align">right</Property>
+      </DataColumn>
+      <DataColumn name="facAccyPx">
+        <Property name="property">facAccyPx</Property>
+        <Property name="align">right</Property>
+      </DataColumn>
+      <DataColumn name="comAccyPx">
+        <Property name="property">comAccyPx</Property>
+        <Property name="align">right</Property>
+      </DataColumn>
+      <DataColumn name="facStPx">
+        <Property name="property">facStPx</Property>
+        <Property name="align">right</Property>
+      </DataColumn>
+      <DataColumn name="comStPx">
+        <Property name="property">comStPx</Property>
+        <Property name="align">right</Property>
+      </DataColumn>
+      <DataColumn name="initBandCost">
+        <Property name="property">initBandCost</Property>
+        <Property name="align">right</Property>
+      </DataColumn>
+      <DataColumn name="baseCost">
+        <Property name="property">baseCost</Property>
+        <Property name="align">right</Property>
+      </DataColumn>
+      <DataColumn name="otherCost">
+        <Property name="property">otherCost</Property>
+        <Property name="align">right</Property>
+      </DataColumn>
+      <DataColumn name="facSettlePx">
+        <Property name="property">facSettlePx</Property>
+        <Property name="align">right</Property>
+      </DataColumn>
+      <DataColumn name="cerType">
+        <Property name="property">cerType</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="cerNum">
+        <Property name="property">cerNum</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="mainStCode">
+        <Property name="property">mainStCode</Property>
+      </DataColumn>
+      <DataColumn name="mainCerType">
+        <Property name="property">mainCerType</Property>
+      </DataColumn>
+      <DataColumn name="mainCerCode">
+        <Property name="property">mainCerCode</Property>
+      </DataColumn>
+      <DataColumn name="color">
+        <Property name="property">color</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="neat">
+        <Property name="property">neat</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="ngtcGoods">
+        <Property name="property">ngtcGoods</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="ngtcTotQuality">
+        <Property name="property">ngtcTotQuality</Property>
+        <Property name="align">right</Property>
+      </DataColumn>
+      <DataColumn name="ngtcGFineness">
+        <Property name="property">ngtcGFineness</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="otherCerType">
+        <Property name="property">otherCerType</Property>
+      </DataColumn>
+      <DataColumn name="otherCerCode">
+        <Property name="property">otherCerCode</Property>
+      </DataColumn>
+      <DataColumn name="inlaiedScoop">
+        <Property name="property">inlaiedScoop</Property>
+        <Property name="align">right</Property>
+      </DataColumn>
+      <DataColumn name="manStWt">
+        <Property name="property">manStWt</Property>
+        <Property name="align">right</Property>
+      </DataColumn>
+      <DataColumn name="manStInfo">
+        <Property name="property">manStInfo</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="asstStWt">
+        <Property name="property">asstStWt</Property>
+        <Property name="align">right</Property>
+      </DataColumn>
+      <DataColumn name="asstStInfo">
+        <Property name="property">asstStInfo</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="asstStAmt">
+        <Property name="property">asstStAmt</Property>
+        <Property name="align">right</Property>
+      </DataColumn>
+      <DataColumn name="lauDate">
+        <Property name="property">lauDate</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="refOrderNum">
+        <Property name="property">refOrderNum</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="refLineNum">
+        <Property name="property">refLineNum</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="supCode">
+        <Property name="property">supCode</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="supName">
+        <Property name="property">supName</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="status">
+        <Property name="property">status</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="remark">
+        <Property name="property">remark</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="lckClientCode">
+        <Property name="property">lckClientCode</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="lckDate">
+        <Property name="property">lckDate</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="lckRem">
+        <Property name="property">lckRem</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="qty">
+        <Property name="property">qty</Property>
+        <Property name="align">right</Property>
+      </DataColumn>
+      <DataColumn>
+        <Property name="property">loan</Property>
+        <Property name="name">loan</Property>
+        <Property name="align">center</Property>
+        <Editor/>
+      </DataColumn>
+      <DataColumn name="createdBy">
+        <Property name="property">createdBy</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="createdD">
+        <Property name="property">createdD</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+    </DataGrid>
+    <Export2ReportAction id="export2ReportAction1">
+      <Property name="template">dgMain</Property>
+      <Property name="dataScope">serverAll</Property>
+    </Export2ReportAction>
+    <AjaxAction id="ajGetClient">
+      <Property name="service">userPR#getClient</Property>
+      <Property name="async">false</Property>
+    </AjaxAction>
+    <Dialog id="dlgMod">
+      <Property name="caption">单品信息修改</Property>
+      <Property name="height">80%</Property>
+      <Property name="width">80%</Property>
+      <Buttons>
+        <Button id="btnSure">
+          <Property name="caption">确认</Property>
+          <Property name="icon">url(>skin>common/icons.gif) -140px -20px</Property>
+        </Button>
+        <Button id="btnCancel">
+          <Property name="icon">url(>skin>common/icons.gif) -40px -0px</Property>
+          <Property name="caption">取消</Property>
+        </Button>
+      </Buttons>
+      <Children>
+        <AutoForm>
+          <Property name="dataSet">dsMain</Property>
+          <Property name="cols">*,*,*,*</Property>
+          <Property name="labelWidth">100</Property>
+          <AutoFormElement>
+            <Property name="name">stockLocale</Property>
+            <Property name="property">stockLocale</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">batchCode</Property>
+            <Property name="property">batchCode</Property>
+            <Property name="readOnly">true</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">spName</Property>
+            <Property name="property">spName</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">prodCode</Property>
+            <Property name="property">prodCode</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">prodName</Property>
+            <Property name="property">prodName</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">isEmptyBracket</Property>
+            <Property name="property">isEmptyBracket</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">mosType</Property>
+            <Property name="property">mosType</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">facProdCode</Property>
+            <Property name="property">facProdCode</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">retPrice</Property>
+            <Property name="property">retPrice</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">material</Property>
+            <Property name="property">material</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">clarityGWt</Property>
+            <Property name="property">clarityGWt</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">weight</Property>
+            <Property name="property">weight</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">size</Property>
+            <Property name="property">size</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">goldWastage</Property>
+            <Property name="property">goldWastage</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">inclWastageGWt</Property>
+            <Property name="property">inclWastageGWt</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">goldPx</Property>
+            <Property name="property">goldPx</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">facGPx</Property>
+            <Property name="property">facGPx</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">cmpyGPx</Property>
+            <Property name="property">cmpyGPx</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">facAccyPx</Property>
+            <Property name="property">facAccyPx</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">comAccyPx</Property>
+            <Property name="property">comAccyPx</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">facStPx</Property>
+            <Property name="property">facStPx</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">comStPx</Property>
+            <Property name="property">comStPx</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">initBandCost</Property>
+            <Property name="property">initBandCost</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">baseCost</Property>
+            <Property name="property">baseCost</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">otherCost</Property>
+            <Property name="property">otherCost</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">facSettlePx</Property>
+            <Property name="property">facSettlePx</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">cerNum</Property>
+            <Property name="property">cerNum</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">ngtcGoods</Property>
+            <Property name="property">ngtcGoods</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">ngtcTotQuality</Property>
+            <Property name="property">ngtcTotQuality</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">ngtcGFineness</Property>
+            <Property name="property">ngtcGFineness</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">inlaiedScoop</Property>
+            <Property name="property">inlaiedScoop</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">manStWt</Property>
+            <Property name="property">manStWt</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">manStInfo</Property>
+            <Property name="property">manStInfo</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">asstStWt</Property>
+            <Property name="property">asstStWt</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">asstStInfo</Property>
+            <Property name="property">asstStInfo</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">asstStAmt</Property>
+            <Property name="property">asstStAmt</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">lauDate</Property>
+            <Property name="property">lauDate</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">refOrderNum</Property>
+            <Property name="property">refOrderNum</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">refLineNum</Property>
+            <Property name="property">refLineNum</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">supCode</Property>
+            <Property name="property">supCode</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">supName</Property>
+            <Property name="property">supName</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">status</Property>
+            <Property name="property">status</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">remark</Property>
+            <Property name="property">remark</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">lckClientCode</Property>
+            <Property name="property">lckClientCode</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">lckDate</Property>
+            <Property name="property">lckDate</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">lckRem</Property>
+            <Property name="property">lckRem</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">qty</Property>
+            <Property name="property">qty</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">createdBy</Property>
+            <Property name="property">createdBy</Property>
+            <Property name="readOnly">true</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">createdD</Property>
+            <Property name="property">createdD</Property>
+            <Property name="readOnly">true</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">updatedBy</Property>
+            <Property name="property">updatedBy</Property>
+            <Property name="readOnly">true</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">updatedD</Property>
+            <Property name="property">updatedD</Property>
+            <Property name="readOnly">true</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">firstCatg</Property>
+            <Property name="property">firstCatg</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">secCatg</Property>
+            <Property name="property">secCatg</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">goldColor</Property>
+            <Property name="property">goldColor</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">goldType</Property>
+            <Property name="property">goldType</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">cerType</Property>
+            <Property name="property">cerType</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">color</Property>
+            <Property name="property">color</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">neat</Property>
+            <Property name="property">neat</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">stockLocale</Property>
+            <Property name="property">stockLocale</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">mainStCode</Property>
+            <Property name="property">mainStCode</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">mainCerCode</Property>
+            <Property name="property">mainCerCode</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">loan</Property>
+            <Property name="property">loan</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">mainCerType</Property>
+            <Property name="property">mainCerType</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">otherCerType</Property>
+            <Property name="property">otherCerType</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">otherCerCode</Property>
+            <Property name="property">otherCerCode</Property>
+            <Editor/>
+          </AutoFormElement>
+        </AutoForm>
+      </Children>
+      <Tools/>
+    </Dialog>
+    <UpdateAction id="uaUpdate">
+      <Property name="dataResolver">stockController#updateProp</Property>
+      <Property name="successMessage">更新成功！</Property>
+      <UpdateItem>
+        <Property name="dataSet">dsMain</Property>
+        <Property name="dataPath">[#current]</Property>
+        <Property name="alias">dsMain</Property>
+      </UpdateItem>
+    </UpdateAction>
+  </View>
+</ViewConfig>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewConfig>
+  <Arguments/>
+  <Context/>
+  <Model/>
+  <View>
+    <ClientEvent name="onReady">var fileName = null;&#xD;
+fileName = 'JMC珠宝开店宝操作手册_V1.2.pptx';&#xD;
+fileName = new Base64().encode(fileName);&#xD;
+var download = view.id('downFile');&#xD;
+var params = {&#xD;
+	&quot;fileName&quot; : fileName&#xD;
+};&#xD;
+download.set('parameter', params);&#xD;
+</ClientEvent>
+    <Property name="style">
+      <Property name="backgroundImage">url('images/home-bg.jpg')</Property>
+      <Property name="backgroundSize">100% 100%</Property>
+      <Property name="backgroundRepeat">no-repeat</Property>
+      <Property name="backgroundPosition">center-center</Property>
+    </Property>
+    <Container layout="padding:100" layoutConstraint="left">
+      <Property name="width">50%</Property>
+      <Property name="height">80%</Property>
+      <Button id="btnDown">
+        <Property name="caption">下载操作手册</Property>
+        <Property name="action">downFile</Property>
+        <Property name="icon"> url(>skin>common/icons.gif) -160px -120px</Property>
+      </Button>
+      <Container>
+        <Property name="height">50</Property>
+      </Container>
+      <Label>
+        <Property name="style">
+          <Property name="font-size">20px</Property>
+          <Property name="color">black</Property>
+        </Property>
+        <Property name="text">更新日志</Property>
+      </Label>
+      <Label>
+        <Property name="text">2018.10.11&#xD;
+	1.修复BUG&#xD;
+2018.10.6&#xD;
+	1.测试系统取消一个账号只能一个地方登陆的限制&#xD;
+2018.9.3&#xD;
+	1.完善物料管理上传图片功能&#xD;
+	2.物料管理增加出库金额计算逻辑&#xD;
+2018.7.30&#xD;
+	1.新增物料管理功能&#xD;
+2018.7.11&#xD;
+	1.修复BUG&#xD;
+	2.更换皮肤&#xD;
+2018.7.3&#xD;
+	1.条码打印格式调整&#xD;
+2018.6.27&#xD;
+	1.优化图片显示速度，加入压缩图片处理（刚上传到FTP上的图片可能无法即使显示,&#xD;
+	  需要等待后台2分钟左右的处理，处理完的图片就不需要等待）&#xD;
+    2.修复了一系列BUG</Property>
+      </Label>
+    </Container>
+    <DownloadAction id="downFile">
+      <Property name="parameter"></Property>
+      <Property name="fileProvider">filePR#downloadFileFromTct</Property>
+    </DownloadAction>
+  </View>
+</ViewConfig>

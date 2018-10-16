@@ -1,0 +1,557 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ViewConfig>
+  <Arguments/>
+  <Context/>
+  <Model>
+    <DataType name="dtCondition">
+      <PropertyDef name="matCode">
+        <Property name="label">物料编码</Property>
+      </PropertyDef>
+      <PropertyDef name="matName">
+        <Property name="label">物料名称</Property>
+      </PropertyDef>
+    </DataType>
+    <DataType name="dtMain" parent="dtStockInvMain">
+      <PropertyDef name="matCode">
+        <Property></Property>
+        <Property name="label">物料编码 </Property>
+        <Property name="required">true</Property>
+      </PropertyDef>
+      <PropertyDef name="nums">
+        <Property name="dataType">BigDecimal</Property>
+        <Property name="label">数量</Property>
+        <Property name="required">true</Property>
+        <Validator name="validator1" type="range">
+          <Property name="minValue">0</Property>
+          <Property name="resultMessage">请输入大于0的数</Property>
+          <Property name="minValueValidateMode">notAllowEquals</Property>
+        </Validator>
+      </PropertyDef>
+      <PropertyDef name="amount">
+        <Property name="dataType">BigDecimal</Property>
+        <Property name="label">金额</Property>
+        <Validator name="validator1" type="range">
+          <Property name="minValue">0</Property>
+          <Property name="minValueValidateMode">notAllowEquals</Property>
+          <Property name="resultMessage">请输入大于0的数</Property>
+        </Validator>
+      </PropertyDef>
+      <Reference name="refImg">
+        <Property name="dataType">[dtSysFile]</Property>
+        <Property name="dataProvider">filePR#getFile</Property>
+        <Property name="parameter">$${this.imgId}</Property>
+      </Reference>
+    </DataType>
+    <DataType name="dtDetail" parent="dtStockMvDetail"/>
+    <DataType name="dtAddMain" parent="dtStockInvMain">
+      <PropertyDef name="storageDate">
+        <Property name="dataType">Date</Property>
+        <Property name="label">首次入库日期</Property>
+        <Property name="required">true</Property>
+      </PropertyDef>
+    </DataType>
+    <DataType name="dtMod" parent="dtStockMvDetail">
+      <PropertyDef name="storageDate">
+        <Property name="dataType">Date</Property>
+        <Property name="label">入库日期</Property>
+        <Property name="required">true</Property>
+      </PropertyDef>
+      <PropertyDef name="nums">
+        <Property name="dataType">BigDecimal</Property>
+        <Property name="label">数量</Property>
+        <Property name="required">true</Property>
+        <Validator name="validator1" type="range">
+          <Property name="minValue">0</Property>
+          <Property name="minValueValidateMode">notAllowEquals</Property>
+          <Property name="resultMessage">请输入大于0的数</Property>
+        </Validator>
+      </PropertyDef>
+      <PropertyDef name="amount">
+        <Property name="dataType">BigDecimal</Property>
+        <Property name="label">金额</Property>
+        <Validator name="validator1" type="range">
+          <Property name="minValue">0</Property>
+          <Property name="minValueValidateMode">notAllowEquals</Property>
+          <Property name="resultMessage">请输入大于0的数</Property>
+        </Validator>
+      </PropertyDef>
+    </DataType>
+  </Model>
+  <View>
+    <DataSet id="dsCondition">
+      <Property name="dataType">dtCondition</Property>
+    </DataSet>
+    <DataSet id="dsMain">
+      <Property name="dataType">[dtMain]</Property>
+      <Property name="loadMode">manual</Property>
+      <Property name="pageSize">50</Property>
+      <Property name="dataProvider">matMainCtl#getMainListPage</Property>
+    </DataSet>
+    <DataSet id="dsDetail">
+      <Property name="dataType">[dtDetail]</Property>
+      <Property name="dataProvider">matMainCtl#getDetailListPage</Property>
+      <Property name="loadMode">manual</Property>
+      <Property name="pageSize">30</Property>
+    </DataSet>
+    <DataSet id="dsAddMain">
+      <Property name="dataType">dtAddMain</Property>
+      <Property name="loadMode">manual</Property>
+    </DataSet>
+    <DataSet id="dsAddDetail">
+      <Property name="dataType">[dtMain]</Property>
+      <Property name="loadMode">manual</Property>
+    </DataSet>
+    <DataSet id="dsMod">
+      <Property name="dataType">dtMod</Property>
+    </DataSet>
+    <FieldSet>
+      <Property name="caption">查询条件</Property>
+      <Buttons/>
+      <Children>
+        <AutoForm id="afCondition">
+          <Property name="cols">300,300,*</Property>
+          <Property name="dataSet">dsCondition</Property>
+          <AutoFormElement>
+            <Property name="name">matCode</Property>
+            <Property name="property">matCode</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">matName</Property>
+            <Property name="property">matName</Property>
+            <Editor/>
+          </AutoFormElement>
+        </AutoForm>
+      </Children>
+    </FieldSet>
+    <ToolBar>
+      <ToolBarLabel>
+        <Property name="text">物料总库存</Property>
+      </ToolBarLabel>
+      <DataPilot>
+        <Property name="dataSet">dsMain</Property>
+        <Property name="itemCodes">pages,pageSize</Property>
+      </DataPilot>
+      <ToolBarButton id="btnQuery">
+        <Property name="caption">查询</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -40px -100px</Property>
+      </ToolBarButton>
+      <ToolBarButton id="btnReset">
+        <Property name="caption">重置</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -20px -200px</Property>
+      </ToolBarButton>
+      <ToolBarButton id="btnFirstIn">
+        <Property name="caption">首次入库</Property>
+        <Property name="icon"> url(>skin>common/icons.gif) -0px -20px</Property>
+      </ToolBarButton>
+      <ToolBarButton id="btnIn">
+        <Property name="caption">补货入库</Property>
+        <Property name="icon"> url(>skin>common/icons.gif) -120px -0px</Property>
+      </ToolBarButton>
+      <ToolBarButton id="btnOut">
+        <Property name="caption">物料出库</Property>
+        <Property name="icon"> url(>skin>common/icons.gif) -140px -0px</Property>
+      </ToolBarButton>
+      <ToolBarButton id="btnImg">
+        <Property name="caption">图片上传/查看</Property>
+        <Property name="icon"> url(>skin>common/icons.gif) -40px -60px</Property>
+      </ToolBarButton>
+      <ToolBarButton id="btnWatch">
+        <Property name="caption">查看出入库明细</Property>
+        <Property name="icon">url(>skin>common/icons.gif) -220px -80px</Property>
+      </ToolBarButton>
+    </ToolBar>
+    <DataGrid id="dgMain">
+      <Property name="dataSet">dsMain</Property>
+      <Property name="stretchColumnsMode">off</Property>
+      <Property name="showFooter">true</Property>
+      <Property name="readOnly">true</Property>
+      <RowNumColumn/>
+      <DataColumn name="matCode">
+        <Property name="property">matCode</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="matName">
+        <Property name="property">matName</Property>
+      </DataColumn>
+      <DataColumn name="nums">
+        <Property name="property">nums</Property>
+        <Property name="align">right</Property>
+      </DataColumn>
+      <DataColumn name="storageDate">
+        <Property name="property">storageDate</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="amount">
+        <Property name="property">amount</Property>
+        <Property name="align">right</Property>
+      </DataColumn>
+      <DataColumn name="supCode">
+        <Property name="property">supCode</Property>
+        <Property name="width">120</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="supName">
+        <Property name="property">supName</Property>
+        <Property name="width">150</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="supNo">
+        <Property name="property">supNo</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="remarks">
+        <Property name="property">remarks</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="createdBy">
+        <Property name="property">createdBy</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="createdD">
+        <Property name="property">createdD</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="updatedBy">
+        <Property name="property">updatedBy</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+      <DataColumn name="updatedD">
+        <Property name="property">updatedD</Property>
+        <Property name="align">center</Property>
+      </DataColumn>
+    </DataGrid>
+    <Dialog id="dlgAddFirst">
+      <Property name="height">90%</Property>
+      <Property name="width">80%</Property>
+      <Property name="caption">首次入库</Property>
+      <Buttons>
+        <Button id="btnSave">
+          <Property name="caption">保存</Property>
+          <Property name="icon">url(>skin>common/icons.gif) -140px -20px</Property>
+        </Button>
+        <Button id="btnCancel">
+          <Property name="caption">取消</Property>
+          <Property name="icon">url(>skin>common/icons.gif) -40px -0px</Property>
+        </Button>
+      </Buttons>
+      <Children>
+        <AutoForm>
+          <Property name="dataSet">dsAddMain</Property>
+          <Property name="cols">*,*,*,*</Property>
+          <Property name="labelWidth">100</Property>
+          <AutoFormElement>
+            <Property name="name">storageDate</Property>
+            <Property name="property">storageDate</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement id="supCodeForm">
+            <Property name="name">supCode</Property>
+            <Property name="property">supCode</Property>
+            <Property name="trigger">triggerSup</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">supName</Property>
+            <Property name="property">supName</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">supNo</Property>
+            <Property name="property">supNo</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement layoutConstraint="colSpan:4">
+            <Property name="name">remarks</Property>
+            <Property name="property">remarks</Property>
+            <Editor/>
+          </AutoFormElement>
+        </AutoForm>
+        <ToolBar>
+          <ToolBarButton id="btnAddLine">
+            <Property name="caption">新增一行</Property>
+            <Property name="icon"> url(>skin>common/icons.gif) -120px -0px</Property>
+          </ToolBarButton>
+          <ToolBarButton id="btnRemoveLine">
+            <Property name="caption">删除一行</Property>
+            <Property name="icon"> url(>skin>common/icons.gif) -140px -0px</Property>
+          </ToolBarButton>
+        </ToolBar>
+        <DataGrid id="dgAddDetail">
+          <Property name="dataSet">dsAddDetail</Property>
+          <RowNumColumn/>
+          <DataColumn name="matCode">
+            <Property name="property">matCode</Property>
+          </DataColumn>
+          <DataColumn name="matName">
+            <Property name="property">matName</Property>
+          </DataColumn>
+          <DataColumn name="nums">
+            <Property name="property">nums</Property>
+          </DataColumn>
+          <DataColumn name="amount">
+            <Property name="property">amount</Property>
+          </DataColumn>
+        </DataGrid>
+      </Children>
+      <Tools/>
+    </Dialog>
+    <Dialog id="dlgMod">
+      <Property name="height">40%</Property>
+      <Property name="width">50%</Property>
+      <Property name="caption">出入库</Property>
+      <Buttons>
+        <Button id="btnSaveMod">
+          <Property name="caption">保存</Property>
+          <Property name="icon">url(>skin>common/icons.gif) -140px -20px</Property>
+        </Button>
+        <Button id="btnCancelMod">
+          <Property name="caption">取消</Property>
+          <Property name="icon">url(>skin>common/icons.gif) -40px -0px</Property>
+        </Button>
+      </Buttons>
+      <Children>
+        <AutoForm>
+          <Property name="dataSet">dsMod</Property>
+          <Property name="cols">*,*</Property>
+          <AutoFormElement>
+            <Property name="name">matCode</Property>
+            <Property name="property">matCode</Property>
+            <Property name="readOnly">true</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement>
+            <Property name="name">matName</Property>
+            <Property name="property">matName</Property>
+            <Property name="readOnly">true</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement id="numsForm">
+            <Property name="name">nums</Property>
+            <Property name="property">nums</Property>
+            <Property name="hideMode">display</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement id="storageDateForm">
+            <Property name="name">storageDate</Property>
+            <Property name="property">storageDate</Property>
+            <Property name="hideMode">display</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement id="amountForm">
+            <Property name="name">amount</Property>
+            <Property name="property">amount</Property>
+            <Property name="hideMode">display</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement id="saleCodeForm">
+            <Property name="name">saleCode</Property>
+            <Property name="property">saleCode</Property>
+            <Property name="hideMode">display</Property>
+            <Editor/>
+          </AutoFormElement>
+          <AutoFormElement layoutConstraint="colSpan:2">
+            <Property name="name">remarks</Property>
+            <Property name="property">remarks</Property>
+            <Editor>
+              <TextArea>
+                <Property name="property">remarks</Property>
+                <Property name="blankText">此处输入备注......</Property>
+              </TextArea>
+            </Editor>
+          </AutoFormElement>
+        </AutoForm>
+      </Children>
+      <Tools/>
+    </Dialog>
+    <Dialog id="dlgWatchDetail">
+      <Property name="height">90%</Property>
+      <Property name="width">70%</Property>
+      <Property name="caption">出入库明细</Property>
+      <Buttons>
+        <Button id="btnClose">
+          <Property name="caption">关闭</Property>
+          <Property name="icon">url(>skin>common/icons.gif) -40px -0px</Property>
+        </Button>
+      </Buttons>
+      <Children>
+        <ToolBar>
+          <ToolBarLabel>
+            <Property name="text">出入库明细</Property>
+          </ToolBarLabel>
+          <DataPilot>
+            <Property name="dataSet">dsDetail</Property>
+            <Property name="itemCodes">pages,pageSize</Property>
+          </DataPilot>
+        </ToolBar>
+        <DataGrid id="dgDetail">
+          <Property name="dataSet">dsDetail</Property>
+          <Property name="showFooter">true</Property>
+          <RowNumColumn/>
+          <DataColumn>
+            <Property name="name">matCode</Property>
+            <Property name="property">matCode</Property>
+            <Property name="align">center</Property>
+            <Editor/>
+          </DataColumn>
+          <DataColumn>
+            <Property name="name">matName</Property>
+            <Property name="property">matName</Property>
+            <Editor/>
+          </DataColumn>
+          <DataColumn name="nums">
+            <Property name="property">nums</Property>
+            <Property name="width">120</Property>
+            <Property name="align">right</Property>
+            <Property name="caption">出入库数量</Property>
+          </DataColumn>
+          <DataColumn name="storageDate">
+            <Property name="property">storageDate</Property>
+            <Property name="align">center</Property>
+            <Property name="caption">出入库日期</Property>
+          </DataColumn>
+          <DataColumn name="amount">
+            <Property name="property">amount</Property>
+            <Property name="align">right</Property>
+            <Property name="caption">出入库金额</Property>
+          </DataColumn>
+          <DataColumn name="saleCode">
+            <Property name="property">saleCode</Property>
+            <Property name="align">center</Property>
+          </DataColumn>
+          <DataColumn name="createdBy">
+            <Property name="property">createdBy</Property>
+            <Property name="align">center</Property>
+          </DataColumn>
+          <DataColumn name="createdD">
+            <Property name="property">createdD</Property>
+            <Property name="align">center</Property>
+          </DataColumn>
+          <DataColumn name="remarks">
+            <Property name="property">remarks</Property>
+            <Property name="align">center</Property>
+          </DataColumn>
+        </DataGrid>
+      </Children>
+      <Tools/>
+    </Dialog>
+    <Dialog id="dlgUpImg">
+      <Property name="caption">图片</Property>
+      <Property name="height">60%</Property>
+      <Property name="width">70%</Property>
+      <Buttons>
+        <Button id="btnSaveImg">
+          <Property name="caption">保存</Property>
+          <Property name="icon"> url(>skin>common/icons.gif) -140px -20px</Property>
+        </Button>
+        <Button id="btnCloseImg">
+          <Property name="caption">关闭</Property>
+          <Property name="icon"> url(>skin>common/icons.gif) -40px -0px</Property>
+        </Button>
+      </Buttons>
+      <Children>
+        <ToolBar>
+          <ToolBarButton id="imgUp">
+            <Property name="caption">上传图片</Property>
+            <Property name="action">uploadPicture</Property>
+            <Property name="icon"> url(>skin>common/icons.gif) -120px -0px</Property>
+          </ToolBarButton>
+          <ToolBarButton id="imgDel">
+            <Property name="caption">删除图片</Property>
+            <Property name="icon"> url(>skin>common/icons.gif) -140px -0px</Property>
+          </ToolBarButton>
+          <ToolBarButton id="imgDelAll">
+            <Property name="caption">删除所有图片</Property>
+            <Property name="icon"> url(>skin>common/icons.gif) -40px -0px</Property>
+          </ToolBarButton>
+        </ToolBar>
+        <DataBlockView id="dbvImage">
+          <Property name="dataSet">dsMain</Property>
+          <Property name="dataPath">#.refImg</Property>
+          <Property name="lineSize">100</Property>
+          <Property name="blockWidth">120</Property>
+          <Property name="blockHeight">120</Property>
+        </DataBlockView>
+      </Children>
+      <Tools/>
+    </Dialog>
+    <Trigger id="triggerSup"/>
+    <Import id="impSup" src="com.jmc.scm.system.view.common.SupBaseInfoIFrame#_supInfoChoose"/>
+    <AjaxAction id="ajGetSupInfo">
+      <Property name="service">goodsInController#getSupInfo</Property>
+    </AjaxAction>
+    <AjaxAction id="ajCheckMat">
+      <Property name="async">false</Property>
+      <Property name="service">matMainCtl#checkSt</Property>
+    </AjaxAction>
+    <UpdateAction id="uaSave">
+      <Property name="successMessage">首次入库成功！</Property>
+      <Property name="dataResolver">matMainCtl#saveFirstMat</Property>
+      <Property name="async">false</Property>
+      <UpdateItem>
+        <Property name="dataSet">dsAddDetail</Property>
+        <Property name="alias">list</Property>
+        <Property name="dataPath">[#all]</Property>
+      </UpdateItem>
+    </UpdateAction>
+    <UpdateAction id="uaSaveMod">
+      <Property name="async">false</Property>
+      <Property name="dataResolver">matMainCtl#saveMod</Property>
+      <UpdateItem>
+        <Property name="dataSet">dsMod</Property>
+        <Property name="dataPath">[#current]</Property>
+        <Property name="alias">entity</Property>
+      </UpdateItem>
+    </UpdateAction>
+    <AjaxAction id="ajCheckStock">
+      <Property name="async">false</Property>
+      <Property name="service">matMainCtl#checkStock</Property>
+    </AjaxAction>
+    <AjaxAction id="ajGetStock">
+      <Property name="service">matMainCtl#getMainByCode</Property>
+    </AjaxAction>
+    <UploadAction id="uploadPicture">
+      <Property name="fileResolver">filePR#uploadFile</Property>
+      <Property name="maxFileSize">20MB</Property>
+      <Property name="selectionMode">multiFiles</Property>
+      <Property name="successMessage">上传成功！</Property>
+      <Filters>
+        <Filter>
+          <Property name="extensions">jpg,gif,png</Property>
+          <Property name="title">Image files</Property>
+        </Filter>
+      </Filters>
+    </UploadAction>
+    <UpdateAction id="uaSaveImg">
+      <Property name="dataResolver">filePR#saveAtt</Property>
+    </UpdateAction>
+    <UpdateAction id="uaUpdateMain">
+      <Property name="successMessage">保存成功！</Property>
+      <Property name="dataResolver">matMainCtl#updateMain</Property>
+      <UpdateItem>
+        <Property name="dataSet">dsMain</Property>
+        <Property name="dataPath">[#current]</Property>
+        <Property name="alias">entity</Property>
+        <Property name="validateData">false</Property>
+      </UpdateItem>
+    </UpdateAction>
+    <UpdateAction id="uaDelImgs">
+      <Property name="dataResolver">matMainCtl#delImgs</Property>
+      <Property name="successMessage">删除成功！</Property>
+      <UpdateItem>
+        <Property name="dataSet">dsMain</Property>
+        <Property name="dataPath">#.refImg</Property>
+        <Property name="alias">files</Property>
+      </UpdateItem>
+    </UpdateAction>
+    <UpdateAction id="uaDelImg">
+      <Property name="dataResolver">matMainCtl#delImg</Property>
+      <Property name="successMessage">删除成功！</Property>
+      <UpdateItem>
+        <Property name="dataPath">#.#refImg</Property>
+        <Property name="dataSet">dsMain</Property>
+        <Property name="alias">file</Property>
+      </UpdateItem>
+    </UpdateAction>
+  </View>
+</ViewConfig>
